@@ -11,6 +11,13 @@ Scenario: Set a building as a favorite
 	  And I go to the dashboard view
 	  Then I should see “Soda” hall under favorites
 
+Scenario: Removing a building from favorites
+	  Given the following halls are favorites: Cory
+	  And I am viewing "Cory" hall
+	  When I select "Unfavorite"
+	  And I go to the dashboard view
+	  Then I should not see "Cory" hall under favorites
+
 Scenario: Viewing dashboard when no favorite buildings are filtered out
 	  Given the following halls are favorites: Soda,Cory,Dwinelle
 	  And no filters are applied
