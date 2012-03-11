@@ -16,7 +16,7 @@ Scenario: Unfavoriting should make items not be favorited anymore
 	  When I select “Unfavorite”
 	  And I go to the dashboard view
 	  Then I should see “Cory” hall under favorites
-	  Then I should not see “Cory” hall under favorites
+	  Then I should not see “Soda” hall under favorites
 
 Scenario: Viewing dashboard when no favorite buildings are filtered out
 	  Given the following halls are favorites: Soda,Cory,Dwinelle
