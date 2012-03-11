@@ -2,12 +2,18 @@ Feature: User can have favorite buildings
 
 	 As a building manager
 	 So I can view buildings that I frequent
-	 I want to have my favorite buildings on top of the overview
-
+	 I want to have my favorite buildings on top of the dashboard
 
 Scenario: Set a building as a favorite
 	  Given I am viewing “Soda” hall
 	  When I select “Favorite”
+	  And I go to the dashboard view
+	  Then I should see “Soda” hall under favorites
+
+Scenario: Unfavoriting should make items not be favorited anymore
+	  Given the following halls are favorites: Soda,Cory
+	  Given I am viewing “Soda” hall
+	  When I select “Unfavorite”
 	  And I go to the dashboard view
 	  Then I should see “Soda” hall under favorites
 
@@ -38,7 +44,6 @@ Scenario: Viewing dashboard when some favorite buildings are filtered by operati
 	  Then I should see “Cory” hall under favorites
 	  And I should not see “Kroeber” hall under favorites
 	  And I should not see “Soda” hall under favorites
-
 
 Scenario: Viewing dashboard when all favorite buildings are filtered out
 	  Given the following halls are favorites: Soda,Cory
