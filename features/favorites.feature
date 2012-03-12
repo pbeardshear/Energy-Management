@@ -1,22 +1,22 @@
-Feature: User can have favorite buildings
+Feature: User can have pinned buildings
 
 	 As a building manager
 	 So I can view buildings that I frequent
-	 I want to have my favorite buildings on top of the dashboard
+	 I want to pin buildings 
 
-Scenario: Set a building as a favorite
+Scenario: Set a building as a pinned
 	  Given I am viewing “Soda” hall
-	  When I select “Favorite”
+	  When I check "Pinned"
 	  And I go to the dashboard view
-	  Then I should see “Soda” hall under favorites
+	  Then I should see “Soda” hall under the pinned tab
 
-Scenario: Unfavoriting should make items not be favorited anymore
+Scenario: Unpinning should make items not be pinned anymore
 	  Given the following halls are favorites: Soda,Cory
 	  Given I am viewing “Soda” hall
-	  When I select “Unfavorite”
+	  When I uncheck "Pinned"
 	  And I go to the dashboard view
-	  Then I should see “Cory” hall under favorites
-	  Then I should not see “Soda” hall under favorites
+	  Then I should see “Cory” hall under the pinned tab
+	  Then I should not see “Soda” hall under the pinned tab
 
 Scenario: Viewing dashboard when no favorite buildings are filtered out
 	  Given the following halls are favorites: Soda,Cory,Dwinelle
