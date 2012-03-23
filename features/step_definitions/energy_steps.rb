@@ -7,13 +7,11 @@ When /I select "(.*)" from the time interval dropdown/ do |interval|
   pending
 end
 
-Then /I should see the usage graph for the past week/ do
+When /I select "(.*)" from the Operational Unit dropdown/ do |op|
   pending
 end
 
-# Above is all we need to do for the dashboard
-
-When /I select "(.*)" from the Operational Unit dropdown/ do |op|
+And /I search for "(.*)" hall/ do |hall|
   pending
 end
 
@@ -27,10 +25,6 @@ end
 
 Given /the following halls are favorites: (.*)/ do |halls|
   #halls.split(',')
-  pending
-end
-
-And /I search for "(.*)" hall/ do |hall|
   pending
 end
 
@@ -59,5 +53,9 @@ Then /^I should not see "(.*)" hall$/ do |hall|
 end
 
 Then /^I should see no Halls$/ do
+  pending
+end
+
+Then /I should see the usage graph for the past week/ do
   pending
 end
