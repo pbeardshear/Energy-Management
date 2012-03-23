@@ -6,6 +6,6 @@ Feature: User can filter buildings on dashboard by operational unit
 
 Scenario: Filter by operational unit
 	  Given I am on the dashboard view
-	  When I select “College of Engineering” from the Operational Unit drop-down menu
-	  I should see “Soda” hall
-	  And I should not see “Dwinelle” hall
+	  When I select "College of Engineering" from the Operational Unit dropdown menu
+	  Then I should see "Soda" hall
+	  And I should not see "Dwinelle" hall

@@ -8,13 +8,13 @@ Background:
 	Given I am on the overview page
 
 Scenario: searching for a building by name that does not exist
-	  And I search for “Hall X”
+	  And I search for "X" hall
 	  Then I should see no Halls
 
 Scenario: searching for a building by full name
-	  And I search for “Evans” Hall
-	  Then I should see the “Evans” Hall
+	  And I search for "Evans" hall
+	  Then I should see "Evans" hall
 
 Scenario: searching for a building by substring of name that does exist
-	  And I search for “Ballroom” hall
-	  Then I should see the “MLK Ballroom” hall
+	  And I search for "Ballroom" hall
+	  Then I should see "MLK Ballroom" hall
