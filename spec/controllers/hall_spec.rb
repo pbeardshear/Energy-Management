@@ -17,5 +17,10 @@ describe HallController do
 		response.should contain("This hall has flourscent light bulbs")
 	end
 	
+	describe 'it should call the model method of the specified hall'
+		get :details, id=> @hall.id
+		@hall.should_recieve(:get_graph).and_return("http://my.pulseenergy.com/embed/?key=12345678")
+	end
+		
 	
 end
