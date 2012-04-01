@@ -10,7 +10,7 @@ describe Hall do
       @hall.get_graph.should  match(/^<script src="http:\/\/my.pulseenergy.com\/embed\/.*<\/script>$/)
     end
     it 'should return the proper key for this hall' do
-      @hall.get_graph.should match(/?key=12345678/)
+      @hall.get_graph.should match(/\?key=12345678/)
     end
   end
 
