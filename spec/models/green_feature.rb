@@ -10,7 +10,7 @@ describe GreenFeature do
       @feature.halls.should be_empty
       @hall = Factory(:greenfeature, { :name => 'Test Hall' })
       @hall_feature = Factory(:hallfeature, { :hall_id => @hall.id, :green_feature_id => @feature.id })
-      # @hall.should have(1).features
+      @feature.should have(1).hall
       @feature.halls[0].name.should == 'Test Hall'
     end
   end

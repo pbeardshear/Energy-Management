@@ -10,7 +10,7 @@ group :development, :test do
   gem 'simplecov', :require => false
   gem 'sqlite3'
   gem 'ruby-debug19', :require => 'ruby-debug'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner'
   gem 'capybara'
