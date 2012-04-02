@@ -1,4 +1,4 @@
-class HallController < ApplicationController
+class HallsController < ApplicationController
   def index
   end
 

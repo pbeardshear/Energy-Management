@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe HallController do
+describe HallsController do
   before :each do
     @hall = Factory(:hall, { :name => 'Test Hall', :key => '12345678' })
     @feature = Factory(:green_feature, { :name => 'Fluorescence', :content => 'This hall has fluorescent light bulbs' })
