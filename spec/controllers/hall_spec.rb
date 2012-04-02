@@ -3,8 +3,8 @@ require 'spec_helper'
 describe HallController do
   before :each do
     @hall = Factory(:hall, { :name => 'Test Hall', :key => '12345678' })
-    @feature = Factory(:greenfeature, { :name => 'Flourscence', :content => 'This hall has flourscent light bulbs' })
-    @hall_feature = Factory(:hallfeature, { :hall_id => @hall.id, :green_feature_id => @feature.id })
+    @feature = Factory(:green_feature, { :name => 'Flourscence', :content => 'This hall has flourscent light bulbs' })
+    @hall_feature = Factory(:hall_feature, { :hall => @hall, :green_feature => @feature })
   end
   
   describe 'access the graph data for the hall' do
