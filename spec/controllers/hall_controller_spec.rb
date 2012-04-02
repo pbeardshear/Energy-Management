@@ -3,7 +3,7 @@ require 'spec_helper'
 describe HallController do
   before :each do
     @hall = Factory(:hall, { :name => 'Test Hall', :key => '12345678' })
-    @feature = Factory(:green_feature, { :name => 'Flourscence', :content => 'This hall has flourscent light bulbs' })
+    @feature = Factory(:green_feature, { :name => 'Fluorescence', :content => 'This hall has fluorescent light bulbs' })
     @hall_feature = Factory(:hall_feature, { :hall => @hall, :green_feature => @feature })
   end
   
@@ -20,9 +20,14 @@ describe HallController do
     end
   end
 	
-  describe 'it should see the green features for the specified hall' do
-    get :details, id=> @hall.id
-    response.should contain("This hall has flourscent light bulbs")
+  describe 'access the green features for the hall' do
+    it 'should retrieve the green features from the hall' do
+      @hall.should_receive(:green_features)
+      get :details, :id => @hall.id
+    end
+    it 'should see the green features for the specified hall' do
+      get :details, :id=> @hall.id
+      response.should contain("This hall has fluorescent light bulbs")
+    end
   end
-
 end

@@ -21,10 +21,10 @@ describe Hall do
     
     it 'should retrieve the proper green features' do
       @hall.green_features.should be_empty
-      @feature = Factory(:green_feature, { :name => 'Flourscence', :content => 'This hall has flourscent light bulbs' })
-      @hall_feature = Factory(:hall_feature, { :hall => @hall, :green_feature => @feature })      
+      @feature = Factory(:green_feature, { :name => 'Fluorescence', :content => 'This hall has fluorescent light bulbs' })
+      @hall_feature = Factory(:hall_feature, { :hall => @hall, :green_feature => @feature })
       @hall.should have(1).green_features(true)
-      @hall.green_features[0].content.should == 'This hall has flourscent light bulbs'
+      @hall.green_features[0].content.should == 'This hall has fluorescent light bulbs'
     end
   end
 
