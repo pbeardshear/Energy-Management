@@ -1,2 +1,2 @@
-module HallHelper
+module HallsHelper
 end
