@@ -1,12 +1,7 @@
 FactoryGirl.define do 
   factory :hall do
-
-    ignore do
-      key 0
-    end
-    
-    name 'some hall name'
-    id { key }
+    name 'some factory hall name'
+    key '1'
   end
                    
   factory :green_feature do
