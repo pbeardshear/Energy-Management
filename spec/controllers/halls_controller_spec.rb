@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe HallsController do
   before :each do
-    @hall = Factory(:hall, { :name => 'Test Hall', :key => 12345678 })
-    @feature = Factory(:green_feature, { :name => 'Fluorescence', :content => 'This hall has fluorescent light bulbs' })
-    @hall_feature = Factory(:hall_feature, { :hall => @hall, :green_feature => @feature })
+    @hall = FactoryGirl.create(:hall, { :name => 'Test Hall', :key => 12345678 })
+    @feature = FactoryGirl.create(:green_feature, { :name => 'Fluorescence', :content => 'This hall has fluorescent light bulbs' })
+    @hall_feature = FactoryGirl.create(:hall_feature, { :hall => @hall, :green_feature => @feature })
     Hall.stub(:find_by_id).and_return(@hall)
   end
   
