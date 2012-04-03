@@ -1,4 +1,2 @@
-File.new("seed_data/halls.txt").each_line |line|
-  #data = line.split()
-	#Hall.create()
-end
+Hall.create(:name => "Shofix", :key =>"Bd5238Ki31GOL5ZewrQglA%3D%3D").save()
+
