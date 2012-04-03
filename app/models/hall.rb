@@ -5,7 +5,7 @@ class Hall < ActiveRecord::Base
   belongs_to :operational_unit
   
   def get_graph (width = 700, height = 300, interval = 'week')
-    "<script src='http://my.pulseenergy.com/embed/?key=#{self.id}&width=#{width}&height=#{height}&interval=#{interval}'></script>"
+    "http://my.pulseenergy.com/embed/?key=#{self.key}&width=#{width}&height=#{height}&interval=#{interval}"
   end
 end
 
