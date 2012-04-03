@@ -4,6 +4,14 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 
+# Add this to load Capybara integration:
+require 'capybara/rspec'
+require 'capybara/rails'
+
+Capybara.register_driver :selenium_chrome do |app|   
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
 require 'factory_girl'
 FactoryGirl.find_definitions
 

@@ -17,7 +17,8 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'rspec-rails'
-  gem 'selenium-client'
+  gem 'selenium-webdriver', '>= 2.5.0'
+  #gem 'selenium-client'
 end
 group :production do
   gem 'pg'
