@@ -3,7 +3,7 @@ class HallsController < ApplicationController
   end
 
   def show
-    @hall = Hall.find_by_id(params[:id])
+    @hall = Hall.find_by_id(Integer(params[:id]))
     @script = @hall.get_graph
     @green_features = @hall.green_features
   end
