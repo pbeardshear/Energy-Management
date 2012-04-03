@@ -1,1 +1,14 @@
-@script
+	<div id="content">
+			<div class="contentPage" id="graphContent">
+        <%= @script %>
+			</div>
+			<div class="contentPage" id="featureContent" style="display:none;"></div>
+		</div>
+		<div data-role="footer" class="ui-body-b">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#" data-icon="graph" class="ui-btn-active" data-href="graphContent">Graph</a></li>
+					<li><a href="#" data-icon="feature" data-href="featureContent">Green Features</a></li>
+				</ul>
+			</div>
+		</div>
