@@ -6,7 +6,7 @@ describe 'halls/show.html.erb' do
     @hall = Factory(:hall, { :name => 'Test Hall', :key => 12345678 })
     @feature1 = Factory(:green_feature, { :name => 'Fluorescence', :content => 'This hall has fluorescent light bulbs' })
     @feature2 = Factory(:green_feature, { :name => 'Low-flow toilets', :content => 'This hall has low-flow toilets' })
-    assign(:script, @hall.get_graph)
+    assign(:path, @hall.get_graph)
     assign(:hall, @hall)
   end
 
