@@ -8,6 +8,7 @@ describe 'halls/show.html.erb' do
     @feature2 = Factory(:green_feature, { :name => 'Low-flow toilets', :content => 'This hall has low-flow toilets' })
     assign(:path, @hall.get_graph)
     assign(:hall, @hall)
+    assign(:green_features, [])
   end
 
   it "should have a tab for its graph" do 
@@ -43,7 +44,6 @@ describe 'halls/show.html.erb' do
 
   context "given the hall has no green features" do
     before :each do
-      assign(:green_features, [])
       render
     end
       it "should not display any green features" do
