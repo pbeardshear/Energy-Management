@@ -1,0 +1,18 @@
+// Place all the styles related to the Hall controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.ui-icon {
+	height: 30px !important;
+	width: 30px !important;
+	margin-left: -15px !important;
+	box-shadow: none !important;
+	border-radius: 0 !important;
+}
+.ui-icon-graph {
+	background: url('icons-using/graph.png') no-repeat 0px 0px;
+}
+.ui-icon-feature {
+	background: url('icons-using/feature.png') no-repeat 0px 0px;
+}
+#content { height: 310px; padding: 25px; }
