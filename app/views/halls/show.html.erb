@@ -2,7 +2,13 @@
     <div class="contentPage" id="graphContent">
         <script src=<%= @path %>></script>
     </div>
-    <div class="contentPage" id="featureContent" style="display:none;"></div>
+    <div class="contentPage" id="featureContent" style="display:none;">
+      <ul>
+      <% @green_features.each do |feature| %>
+        <li>Name: <%=feature.name%>, Description: <%=feature.content%></li>
+      <% end %>
+      </ul>
+    </div>
 </div>
 <div data-role="footer" class="ui-body-b">
     <div data-role="navbar">
