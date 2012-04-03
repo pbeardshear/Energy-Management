@@ -7,7 +7,7 @@ describe Hall do
 
   describe "retrieving the hall's energy data" do
     it 'should retrieve the properly formed embedded script' do
-      @hall.get_graph.should match(/^<script src='http:\/\/my.pulseenergy.com\/embed\/.*<\/script>$/)
+      @hall.get_graph.should match(/^http:\/\/my.pulseenergy.com\/embed\/.*$/)
     end
 
     it 'should return the proper key for this hall' do
