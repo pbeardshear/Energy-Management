@@ -2,9 +2,8 @@ body { height: 100%; }
 
 /* Override default jQuery Mobile styling */
 .ui-icon { height: 30px !important; width: 30px !important; margin-left: -15px !important; box-shadow: none !important; border-radius: 0 !important; }
-.ui-icon-graph { background: url('icons-using/graph.png') no-repeat 0px 0px; }
-.ui-icon-feature { background: url('icons-using/feature.png') no-repeat 0px 0px; }
-.ui-footer-fixed { position: absolute !important; bottom: 0px !important; }
+.ui-icon-graph { background: url('/assets/graph.png') no-repeat 0px 0px !important; background-size: 28px 20px; }
+.ui-icon-feature { background: url('/assets/green_feature.png') no-repeat 0px 0px !important; background-size: 12px 20px; }
 
 .localnav { margin-top: 15px; }
 .localnav li { float: left; }
