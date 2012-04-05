@@ -9,3 +9,4 @@ body { height: 100%; }
 .localnav li { float: left; }
 
 #content { padding: 25px; }
+.content-page { margin: 0 auto; }

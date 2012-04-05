@@ -1,35 +1,56 @@
-<!-- Begin toolbar header -->
-<div data-role="header" class="ui-bar-b" data-position="fixed">
-  <a href="/halls" data-rel="back">Back</a>
-  <h1><%= @hall.name %> Hall</h1>
-</div>
-
-<!-- Begin page content -->
-<div id="content" data-role="content">
-    <div class="contentPage" id="graphContent">
-        <script id="pulseGraph" src=<%= @path %>></script>
-	<ul data-role="controlgroup" data-type="horizontal" class="localnav">
-	  <li><a href="#" data-role="button" class="intervalSelection">Day</a></li>
-	  <li><a href="#" data-role="button" class="intervalSelection ui-btn-active">Week</a></li>
-	  <li><a href="#" data-role="button" class="intervalSelection">Month</a></li>
-	  <li><a href="#" data-role="button" class="intervalSelection">3 Months</a></li>
-	</ul>
+<!-- Begin Graph Tab -->
+<div class="contentPage" id="graphContent" data-role="page">
+    <!-- Begin header -->
+    <div data-role="header" class="ui-bar-b" data-position="fixed">
+      <a href="/halls" data-rel="back">Back</a>
+      <h1><%= @hall.name %> Hall</h1>
     </div>
-    <div class="contentPage" id="featureContent" style="display:none;">
-      <ul>
+    <!-- End header -->
+
+    <script id="pulseGraph" src=<%= @path %>></script>
+    <ul data-role="controlgroup" data-type="horizontal" class="localnav">
+      <li><a href="#" data-role="button" class="intervalSelection">Day</a></li>
+      <li><a href="#" data-role="button" class="intervalSelection ui-btn-active">Week</a></li>
+      <li><a href="#" data-role="button" class="intervalSelection">Month</a></li>
+      <li><a href="#" data-role="button" class="intervalSelection">3 Months</a></li>
+    </ul>
+    
+    <!-- Begin footer -->
+    <div data-role="footer" class="ui-body-b" data-position="fixed">
+	<div data-role="navbar">
+	    <ul>
+		<li><a href="#graphContent" data-icon="graph" class="ui-btn-active" data-role="tab">Graph</a></li>
+		<li><a href="#featureContent" data-icon="feature" data-role="tab">Green Features</a></li>
+	    </ul>
+	</div>
+    </div>
+    <!-- End footer -->
+</div>
+<!-- End Graph Tab -->
+<!-- Begin Green Feature Tab -->
+<div class="contentPage" id="featureContent" data-role="page">
+    <!-- Begin header -->
+    <div data-role="header" class="ui-bar-b" data-position="fixed">
+      <a href="/halls" data-rel="back">Back</a>
+      <h1><%= @hall.name %> Hall</h1>
+    </div>
+    <!-- End header -->
+
+    <ul>
       <% @green_features.each do |feature| %>
-        <li>Name: <%=feature.name%>, Description: <%=feature.content%></li>
+	<li>Name: <%=feature.name%>, Description: <%=feature.content%></li>
       <% end %>
-      </ul>
+    </ul>
+    
+    <!-- Begin footer -->
+    <div data-role="footer" class="ui-body-b" data-position="fixed">
+	<div data-role="navbar">
+	    <ul>
+		<li><a href="#graphContent" data-icon="graph" data-role="tab">Graph</a></li>
+		<li><a href="#featureContent" data-icon="feature" data-role="tab" class="ui-btn-active">Green Features</a></li>
+	    </ul>
+	</div>
     </div>
+    <!-- End footer -->
 </div>
-
-<!-- Begin toolbar footer -->
-<div data-role="footer" class="ui-body-b" data-position="fixed">
-    <div data-role="navbar">
-        <ul>
-            <li><a href="#" data-icon="graph" class="ui-btn-active" data-href="graphContent">Graph</a></li>
-	    <li><a href="#" data-icon="feature" data-href="featureContent">Green Features</a></li>
-        </ul>
-    </div>
-</div>
+<!-- End Green Feature Tab -->
