@@ -1,6 +1,19 @@
+<!-- Begin toolbar header -->
+<div data-role="header" class="ui-bar-b" data-position="fixed">
+  <a href="/halls" data-rel="back">Back</a>
+  <h1><%= @hall.name %> Hall</h1>
+</div>
+
+<!-- Begin page content -->
 <div id="content">
     <div class="contentPage" id="graphContent">
-        <script src=<%= @path %>></script>
+        <script id="pulseGraph" src=<%= @path %>></script>
+	<ul data-role="controlgroup" data-type="horizontal" class="localnav">
+	  <li><a href="#" data-role="button" class="intervalSelection">Day</a></li>
+	  <li><a href="#" data-role="button" class="intervalSelection ui-btn-active">Week</a></li>
+	  <li><a href="#" data-role="button" class="intervalSelection">Month</a></li>
+	  <li><a href="#" data-role="button" class="intervalSelection">3 Months</a></li>
+	</ul>
     </div>
     <div class="contentPage" id="featureContent" style="display:none;">
       <ul>
@@ -10,7 +23,9 @@
       </ul>
     </div>
 </div>
-<div data-role="footer" class="ui-body-b">
+
+<!-- Begin toolbar footer -->
+<div data-role="footer" class="ui-body-b" data-position="fixed">
     <div data-role="navbar">
         <ul>
             <li><a href="#" data-icon="graph" class="ui-btn-active" data-href="graphContent">Graph</a></li>

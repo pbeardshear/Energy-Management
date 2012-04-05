@@ -1,14 +1,12 @@
-.ui-icon {
-	height: 30px !important;
-	width: 30px !important;
-	margin-left: -15px !important;
-	box-shadow: none !important;
-	border-radius: 0 !important;
-}
-.ui-icon-graph {
-	background: url('icons-using/graph.png') no-repeat 0px 0px;
-}
-.ui-icon-feature {
-	background: url('icons-using/feature.png') no-repeat 0px 0px;
-}
-#content { height: 310px; padding: 25px; }
+body { height: 100%; }
+
+/* Override default jQuery Mobile styling */
+.ui-icon { height: 30px !important; width: 30px !important; margin-left: -15px !important; box-shadow: none !important; border-radius: 0 !important; }
+.ui-icon-graph { background: url('icons-using/graph.png') no-repeat 0px 0px; }
+.ui-icon-feature { background: url('icons-using/feature.png') no-repeat 0px 0px; }
+.ui-footer-fixed { position: absolute !important; bottom: 0px !important; }
+
+.localnav { margin-top: 15px; }
+.localnav li { float: left; }
+
+#content { padding: 25px; }
