@@ -24,3 +24,8 @@ group :production do
 end
 
 gem 'jquery-rails'
+
+group :assets do
+  gem 'therubyracer'
+  gem 'uglifier'
+end
