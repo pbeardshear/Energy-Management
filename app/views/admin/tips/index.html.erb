@@ -1,3 +1,3 @@
 <% @tips.each do |tip| %>
-  <li>Name: <%=tip.name%>, Description: <%=tip.content%></li>
+   <li><a href="/admin/tips/<%=tip.id%>">Name: <%=tip.title%></a>, Description: <%=tip.content%>, <a href="/admin/tips/<%=tip.id%>/edit">Edit</a></li>
 <% end %>

@@ -9,15 +9,19 @@ class Admin::TipsController < ApplicationController
     @tip = Tip.find(params[:id])
   end
 
+  def edit
+    @tip = Tip.find(params[:id])
+  end
+
   def delete
     @tip = Tip.find(params[:id])
-    @tip.destory
-    redirect tips_index_page
+    # @tip.destory
+    # redirect tips_index_page
   end
 
   def create
     @tip.new(params).save
-    redirect tips_index_page
+    # redirect tips_index_page
   end
 
 end
