@@ -1,6 +1,7 @@
 class Admin::TipsController < ApplicationController
   # TODO: add logic for failure, and add flash messages
-  
+  layout 'admin'
+
   def index
     @tips = Tip.all
   end
