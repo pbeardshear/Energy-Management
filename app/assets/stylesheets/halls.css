@@ -10,3 +10,7 @@ body { height: 100%; }
 
 #content { padding: 25px; }
 .content-page { margin: 0 auto; }
+
+#graphContainer { width: 315px; overflow: hidden; }
+#intervalControls { width: 315px; }
+#intervalControls ul { margin: 5px auto; width: 266px; }

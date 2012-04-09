@@ -4,7 +4,8 @@ class HallsController < ApplicationController
 
   def show
     @hall = Hall.find_by_id(Integer(params[:id]))
-    @path = @hall.get_graph
+    @interval = params[:interval] || "week"
+    @path = @hall.get_graph(300, 260, @interval)
     @green_features = @hall.green_features
   end
 end
