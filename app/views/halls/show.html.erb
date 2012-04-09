@@ -2,18 +2,22 @@
 <div class="contentPage" id="graphContent" data-role="page">
     <!-- Begin header -->
     <div data-role="header" class="ui-bar-b" data-position="fixed">
-      <a href="/halls" data-rel="back">Back</a>
+      <a data-rel="back">Back</a>
       <h1><%= @hall.name %> Hall</h1>
     </div>
+    
     <!-- End header -->
-
-    <script id="pulseGraph" src=<%= @path %>></script>
-    <ul data-role="controlgroup" data-type="horizontal" class="localnav">
-      <li><a href="#" data-role="button" class="intervalSelection">Day</a></li>
-      <li><a href="#" data-role="button" class="intervalSelection ui-btn-active">Week</a></li>
-      <li><a href="#" data-role="button" class="intervalSelection">Month</a></li>
-      <li><a href="#" data-role="button" class="intervalSelection">3 Months</a></li>
-    </ul>
+    <div id="intervalControls">
+      <ul data-role="controlgroup" data-type="horizontal" class="localnav">
+        <li><a href="/halls/<%=@hall.id%>?interval=day" data-ajax="false" data-role="button" class="intervalSelection <% if @interval == 'day' %>ui-btn-active<% end %>">Day</a></li>
+        <li><a href="/halls/<%=@hall.id%>?interval=week" data-ajax="false" data-role="button" class="intervalSelection <% if @interval == 'week' %>ui-btn-active<% end %>">Week</a></li>
+        <li><a href="/halls/<%=@hall.id%>?interval=month" data-ajax="false" data-role="button" class="intervalSelection <% if @interval == 'month' %>ui-btn-active<% end %>">Month</a></li>
+      </ul>
+    </div>
+    
+    <div id="graphContainer">
+      <script id="pulseGraph" src="<%= @path %>"></script>
+    </div>
     
     <!-- Begin footer -->
     <div data-role="footer" class="ui-body-b" data-position="fixed">
