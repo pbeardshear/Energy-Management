@@ -7,22 +7,36 @@ class Admin::TipsController < ApplicationController
   end
 
   def show
-    @tip = Tip.find(params[:id])
+    @tip = Tip.find params[:id]
   end
 
-  def edit
-    @tip = Tip.find(params[:id])
-  end
-
-  def delete
-    @tip = Tip.find(params[:id])
-    # @tip.destory
-    # redirect tips_index_page
+  def new
   end
 
   def create
-    @tip.new(params).save
-    # redirect tips_index_page
+    @tip = Tip.create! params[:tip]
+    flash[:notice] = "#{@tip.title} was sucessfully created."
+    redirect_to admin_tips_path
+  end
+
+  def edit
+    @tip = Tip.find params[:id]
+    @categories = Category.all()
+    @categories.delete(@tip.category)
+  end
+
+  def update
+    @tip = Tip.find params[:id]
+    @tip.update_attributes! params[:tip]
+    flash[:notice] = "#{@tip.title} was succuessfully updated."
+    redirect_to admin_tip_path(@tip)
+  end
+
+  def destroy
+    @tip = Tip.find params[:id]
+    @tip.destroy
+    flash[:notice] = "Tip '#{@tip.title}' deleted"
+    redirect_to admin_tips_path
   end
 
 end
