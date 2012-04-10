@@ -1,0 +1,16 @@
+<div data-role="header" data-position="fixed">
+  <h1>Halls 2</h1>
+</div>
+
+<div data-role="content">
+  <ul data-role="listview" data-inset="true" data-theme="g">
+    <% @halls.each do |hall| %>
+      <li><a href="halls/<%= hall.id %>"><%= hall.name %></a></li>
+    <% end %>
+  </ul>
+</div>
+
+<div data-role="footer" data-position="fixed">
+  <h4>Footer content</h4>
+</div>
+
