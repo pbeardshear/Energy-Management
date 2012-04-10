@@ -1,0 +1,16 @@
+body { height: 100%; }
+
+/* Override default jQuery Mobile styling */
+.ui-icon { height: 30px !important; width: 30px !important; margin-left: -15px !important; box-shadow: none !important; border-radius: 0 !important; }
+.ui-icon-graph { background: url('/assets/graph.png') no-repeat 0px 0px !important; background-size: 28px 20px; }
+.ui-icon-feature { background: url('/assets/green_feature.png') no-repeat 0px 0px !important; background-size: 12px 20px; }
+
+.localnav { margin-top: 15px; }
+.localnav li { float: left; }
+
+#content { padding: 25px; }
+.content-page { margin: 0 auto; }
+
+#graphContainer { width: 315px; overflow: hidden; }
+#intervalControls { width: 315px; }
+#intervalControls ul { margin: 5px auto; width: 266px; }

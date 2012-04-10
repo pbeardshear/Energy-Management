@@ -1,5 +1,4 @@
 class Admin::TipsController < ApplicationController
-  # TODO: add logic for failure, and add flash messages
   layout 'admin'
 
   def index
@@ -22,12 +21,15 @@ class Admin::TipsController < ApplicationController
   def edit
     @tip = Tip.find params[:id]
     @categories = Category.all()
-    @categories.delete(@tip.category)
+    # @categories.delete(@tip.category)
   end
 
   def update
+    p params[:tip]
     @tip = Tip.find params[:id]
     @tip.update_attributes! params[:tip]
+    @tip.save
+    p @tip
     flash[:notice] = "#{@tip.title} was succuessfully updated."
     redirect_to admin_tip_path(@tip)
   end

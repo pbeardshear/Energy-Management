@@ -6,15 +6,23 @@ if Hall.where(:id => 1).empty?
 end
 
 # Adding categories  
-general_cat = Category.create(:name => "General")
-Category.create(:name => "Office")
-Category.create(:name => "Lab")
-Category.create(:name => "Residence Halls")
+Categories = {
+  "General" => Category.create(:name => "General"),
+  "Office" => Category.create(:name => "Office"),
+  "Lab" => Category.create(:name => "Lab"),
+  "Residence Halls" => Category.create(:name => "Residence Halls")
+}
 
-# Adding a test Tip, change replace this with actual data later
-Tip.create(:title => "TURN OFF WHAT YOU'RE NOT USING",
-           :content => "Monitors and lights when you’re away for more than 15 minutes",
-           :category_id => general_cat.id )
-Tip.create(:title => "BUY ENERGY EFFICIENT PRODUCTS",
-           :content => "Choose CFL or LED light bulbs instead of incandescents",
-           :category_id => general_cat.id )
+# Adding tips
+Tipz = {
+  "Turn Off" => Tip.create(:title => "TURN OFF WHAT YOU'RE NOT USING", 
+                           :content => "Monitors and lights when you’re away for more than 15 minutes"),
+  "Buy" => Tip.create(:title => "Buy enegry efficient products",
+                      :content => "Choose CFL or LED light bulbs instead of incandescents")
+}
+
+# Add elements to the join table
+CategoryTip.create( "category_id" => Categories["General"].id,
+                     "tips_id" => Tipz["Turn Off"].id )
+CategoryTip.create( "category_id" => Categories["Office"].id,
+                     "tips_id" => Tipz["Buy"].id )

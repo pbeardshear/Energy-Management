@@ -1,3 +1,23 @@
-<% @tips.each do |tip| %>
-   <li><a href="/admin/tips/<%=tip.id%>">Name: <%=tip.title%></a>, Description: <%=tip.content%>, <a href="/admin/tips/<%=tip.id%>/edit">Edit</a></li>
-<% end %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Category</th>
+      <th>Content</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @tips.each do |tip| %>
+  <tr>
+    <td><%= link_to tip.title, admin_tip_path(tip)%></td>
+    <td>
+      <% tip.categories.each do |category|%>
+         <p> 
+	   <%= category %> 
+	 </p>
+      <% end %>
+    </td>
+    <td><%=tip.content%></td>
+  </tr>
+  <% end %>
+</table>    

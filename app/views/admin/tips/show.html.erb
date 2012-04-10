@@ -1,1 +1,7 @@
-Name: <%=@tip.title%>, Description: <%=@tip.content%>
+<h3>Title</h3>
+<p><%=@tip.title%></p>
+<h3>Content</h3>
+<p class="well"><%= @tip.content %></p>
+<a href="<%= edit_admin_tip_path(@tip) %>">
+  <button class="btn">Edit</button>
+</a>
