@@ -1,3 +1,3 @@
 class Tip < ActiveRecord::Base
-  belongs_to :category
+  has_many :categories, :through => :category_tips
 end
