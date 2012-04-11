@@ -1,9 +1,21 @@
-<form action="<%= admin_tip_path(@tip) %>" method="post">
-  <input name="_method" type="hidden" value="put" />
-  <label>Title</label>
-  <input type="text" value="<%=@tip.title%>">
-  <!--label>Categories</label-->
-  <label>Content</label>
-  <textarea name="content" style="width:100%"><%= @tip.content %></textarea>
-  <button type="submit" class="btn btn-success">Submit</button>
-</form>
+<%= form_tag admin_tip_path(@tip), :method => 'put' do %>
+  <%= label_tag :title, 'Title' %>
+  <%= text_field :tip, 'title' %>
+  
+  <%= label_tag :categories, 'Categories' %>
+  <% @categories.each do |category| %>
+    <label class="checkbox">
+      <%= check_box_tag "categories[#{category.name}]", 1, @tip.categories.include?(category)%>
+      <%= category.name %>
+    </label>
+  <% end %>
+
+  <%= label_tag :content, 'Content' %>
+  <%= text_area :tip, :content, :size => "60x6" %>
+  <br/>
+
+  <%= submit_tag 'Update Tip', :class => 'btn btn-success' %>
+<% end %>
+
+<%= button_to 'Delete Tip', admin_tip_path(@tip), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-danger'%> 
+

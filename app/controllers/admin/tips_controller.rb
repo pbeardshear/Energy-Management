@@ -10,6 +10,7 @@ class Admin::TipsController < ApplicationController
   end
 
   def new
+    @categories = Category.all
   end
 
   def create
@@ -20,18 +21,21 @@ class Admin::TipsController < ApplicationController
 
   def edit
     @tip = Tip.find params[:id]
-    @categories = Category.all()
-    # @categories.delete(@tip.category)
+    @categories = Category.all
   end
 
   def update
-    p params[:tip]
     @tip = Tip.find params[:id]
+    
+    # categories = params[:categories].each { |category|
+    #  Category.where(:name => category).first
+    # }
+    # @tip.categories = categories
+    # This throws an error, but I am not sure why
     @tip.update_attributes! params[:tip]
-    @tip.save
-    p @tip
+
     flash[:notice] = "#{@tip.title} was succuessfully updated."
-    redirect_to admin_tip_path(@tip)
+    redirect_to admin_tip_path @tip
   end
 
   def destroy
