@@ -11,10 +11,8 @@
   <tr>
     <td><%= link_to tip.title, admin_tip_path(tip)%></td>
     <td>
-      <% tip.categories.each do |category|%>
-         <p> 
-	   <%= category %> 
-	 </p>
+      <% tip.categories.each_index do |i|%>
+	        <%= tip.categories[i].name %><% if i + 1 != tip.categories.length %>,<% end %>
       <% end %>
     </td>
     <td><%=tip.content%></td>
