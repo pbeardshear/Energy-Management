@@ -1,3 +1,10 @@
+<% if flash[:error] %>
+  <div class="alert alert-error">
+    <a class="close" data-dismiss="alert">×</a>
+    <h4 class="alert-heading"><%=flash[:error]%></h4>
+  </div>
+<% end %>
+
 <%= form_tag admin_tips_path, :method => 'post' do %>
   <%= label_tag :title, 'Title' %>
   <%= text_field :tip, 'title' %>
