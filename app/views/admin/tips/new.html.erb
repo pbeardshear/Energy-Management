@@ -1,11 +1,11 @@
-<%= form_tag admin_tip_path(@tip), :method => 'put' do %>
+<%= form_tag admin_tips_path, :method => 'post' do %>
   <%= label_tag :title, 'Title' %>
   <%= text_field :tip, 'title' %>
   
   <%= label_tag :categories, 'Categories' %>
   <% @categories.each do |category| %>
     <label class="checkbox">
-      <%= check_box_tag "categories[#{category.name}]", 1, @tip.categories.include?(category)%>
+      <%= check_box_tag "categories[#{category.name}]", 1 %>
       <%= category.name %>
     </label>
   <% end %>
@@ -14,8 +14,5 @@
   <%= text_area :tip, :content, :size => "60x6" %>
   <br/>
 
-  <%= submit_tag 'Update Tip', :class => 'btn btn-success' %>
+  <%= submit_tag 'Create Tip', :class => 'btn btn-success' %>
 <% end %>
-
-<%= button_to 'Delete Tip', admin_tip_path(@tip), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-danger'%> 
-

@@ -1,10 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
-</head>
-<body>
+  <head>
 
-<%= yield %>
+    <meta charset="utf-8">
+    <title>Admin Page</title>
 
-</body>
+    <!-- Le styles -->
+    <%= stylesheet_link_tag    "admin" %>
+    <%= javascript_include_tag "admin" %>
+    <link href="/assets/admin/bootstrap.css" rel="stylesheet">
+    <link href="/assets/admin/bootstrap-responsive.css" rel="stylesheet">
+    <%= csrf_meta_tags %>
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand">Admin</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="/admin/tips">Tips</a></li>
+              <li><a href="/admin/categories">Categories</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    
+    <div class="container">
+      <%= yield %>
+    </div --> 
+    <!-- /container -->
+   
+  </body>
 </html>

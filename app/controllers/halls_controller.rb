@@ -1,4 +1,6 @@
 class HallsController < ApplicationController
+  layout 'mobile'
+
   def index
     @halls = Hall.all
   end
