@@ -29,6 +29,7 @@ describe 'Category Spec' do
       @tip_category = FactoryGirl.create(:category_tip, {:tip=>@tip, :category=>@category})
       @tip_category.tip.title.should == 'Unplug!'
       @tip.should have(1).categories
+      @category.should have(1).tips(true)
       @tip.categories[0].name.should == "Cat1"
     end
   end
