@@ -8,7 +8,7 @@ end
 Category_general = Category.create(:name=>"General")
 Category_office = Category.create(:name=>"Office")
 Category_lab = Category.create(:name=>"Lab")
-Category_reshall = Category.create(:name=>"Residence Halls")
+Category_reshall = Category.create(:name=>"Residence Hall")
 
 generalTips = Array[
 Tip.create(:title=>"Turn off what you\'re not using", :content=>"Monitors and lights when you\'re away for more than 15 minutes"),
