@@ -23,7 +23,7 @@ FactoryGirl.define do
     name 'General'
   end
 
-  factory :tip_category do
+  factory :category_tip do
     tip
     category
   end
