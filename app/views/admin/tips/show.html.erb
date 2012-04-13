@@ -1,5 +1,9 @@
 <h3>Title</h3>
 <p><%=@tip.title%></p>
+<h3>Categories</h3>
+<% @tip.categories.each do |category| %>
+  <p><%= category.name %></p>
+<% end %>
 <h3>Content</h3>
 <p class="well"><%= @tip.content %></p>
 <a href="<%= edit_admin_tip_path(@tip) %>">
