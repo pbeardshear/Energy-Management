@@ -18,8 +18,18 @@
   <% end %>
 
   <%= label_tag :content, 'Content' %>
-  <%= text_area :tip, :content, :size => "60x6" %>
+  <%= text_area :tip, :content, :size => "100x6", :id => "editor" %>
   <br/>
 
   <%= submit_tag 'Create Tip', :class => 'btn btn-success' %>
 <% end %>
+
+<script type="text/javascript" src="/assets/jquery.wysiwyg.js"></script>
+<script type="text/javascript">
+  $(function () {
+    $('#editor').wysiwyg({
+      initialContent: '',
+      css: '/assets/admin/bootstrap.css'
+    });
+  });
+</script>
