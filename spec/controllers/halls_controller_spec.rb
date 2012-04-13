@@ -8,6 +8,13 @@ describe HallsController do
     Hall.stub(:find_by_id).and_return(@hall)
   end
   
+  describe 'access the hall index' do
+    it 'should retrieve the list of all halls' do
+      Hall.should_receive(:all)
+      get :index
+    end
+  end
+
   describe 'access the graph data for the hall' do
     it 'should find the correct hall by id' do
       Hall.should_receive(:find_by_id).with(@hall.id).and_return(@hall)

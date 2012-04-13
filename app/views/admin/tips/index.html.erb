@@ -1,3 +1,22 @@
+<% if flash[:notice] %>
+  <div class="alert alert-success">
+    <a class="close" data-dismiss="alert">×</a>
+    <h4 class="alert-heading"><%=flash[:notice]%></h4>
+  </div>
+<% end %>
+
+<% if flash[:error] %>
+  <div class="alert alert-error">
+    <a class="close" data-dismiss="alert">×</a>
+    <h4 class="alert-heading"><%=flash[:error]%></h4>
+  </div>
+<% end %>
+
+<a href="/admin/tips/new">
+  <button class="btn">
+    New Tip
+  </button>
+</a>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -11,10 +30,8 @@
   <tr>
     <td><%= link_to tip.title, admin_tip_path(tip)%></td>
     <td>
-      <% tip.categories.each do |category|%>
-         <p> 
-	   <%= category %> 
-	 </p>
+      <% tip.categories.each_index do |i|%>
+	        <%= tip.categories[i].name %><% if i + 1 != tip.categories.length %>,<% end %>
       <% end %>
     </td>
     <td><%=tip.content%></td>
