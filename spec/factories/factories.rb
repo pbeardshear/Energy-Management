@@ -13,4 +13,19 @@ FactoryGirl.define do
     hall
     green_feature
   end
+
+  factory :tip do
+    title 'some tip name'
+    content 'some tip content'
+  end
+
+  factory :category do
+    name 'General'
+  end
+
+  factory :tip_category do
+    tip
+    category
+  end
+
 end
