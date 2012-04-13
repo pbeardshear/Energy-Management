@@ -20,28 +20,15 @@ class Admin::TipsController < ApplicationController
 
   def create
     @tip = Tip.create params[:tip]
-    if @tip
-      # Check for empty title or content fields
-      if @tip.title == ""
-        flash[:error] = "Please specify a title for the tip."
-        # TODO: return to the "new" page and keep the form fields intact
-        redirect_to new_admin_tip_path
-        return
-      elsif @tip.content == ""
-        flash[:error] = "Please specify some content for this tip."
-        # TODO: return to the "new" page and keep the form fields intact
-        redirect_to new_admin_tip_path
-        return
-      else
-        if params[:categories]
-          params[:categories].each do |name|
-            # checked is always "1" in here, i.e. only checked categories are passed
-            CategoryTip.create :tip_id => @tip.id, :category_id => Category.find_by_name(name).id
-          end
+    if @tip and @tip.id
+      if params[:categories]
+        params[:categories].each do |name|
+          # checked is always "1" in here, i.e. only checked categories are passed
+          CategoryTip.create :tip_id => @tip.id, :category_id => Category.find_by_name(name).id
         end
-        flash[:notice] = "#{@tip.title} was sucessfully created."
-        redirect_to admin_tips_path
       end
+      flash[:notice] = "#{@tip.title} was sucessfully created."
+      redirect_to admin_tips_path
     else
       # tip create failed, redirect back to "new" view
       flash[:error] = "Tip creation failed."
@@ -50,33 +37,24 @@ class Admin::TipsController < ApplicationController
   end
 
   def edit
-    @tip = Tip.find params[:id]
+    @tip = Tip.find_by_id params[:id]
     @categories = Category.all
   end
 
   def update
-    @tip = Tip.find params[:id]
+    @tip = Tip.find_by_id params[:id]
     if @tip
-      # Check for empty title or content fields
-      if @tip.title == ""
-        flash[:error] = "Please specify a title for the tip."
-        # TODO: return to the "new" page and keep the form fields intact
-        redirect_to new_admin_tip_path
-        return
-      elsif @tip.content == ""
-        flash[:error] = "Please specify some content for this tip."
-        # TODO: return to the "new" page and keep the form fields intact
-        redirect_to new_admin_tip_path
-        return
-      else
-        @tip.update_attributes! params[:tip]
-        # remove all categories with this tip's id, in lieu of adding the selected ones
-        CategoryTip.destroy_all :tip_id => params[:id]
-        if params[:categories]
-          params[:categories].each do |name|
-            # checked is always "1" in here, i.e. only checked categories are passed
-            CategoryTip.create! :tip_id => params[:id], :category_id => Category.find_by_name(name).id
-          end
+      valid_update = @tip.update_attributes params[:tip]
+      if !valid_update
+        flash[:error] = "Couldn't update #{@tip.name}."
+        redirect_to edit_admin_tip_path
+      end
+      # remove all categories with this tip's id, in lieu of adding the selected ones
+      CategoryTip.destroy_all :tip_id => params[:id]
+      if params[:categories]
+        params[:categories].each do |name|
+          # checked is always "1" in here, i.e. only checked categories are passed
+          CategoryTip.create! :tip_id => params[:id], :category_id => Category.find_by_name(name).id
         end
       end
       flash[:notice] = "#{@tip.title} was succuessfully updated."
@@ -89,11 +67,15 @@ class Admin::TipsController < ApplicationController
   end
 
   def destroy
-    @tip = Tip.find params[:id]
+    @tip = Tip.find_by_id params[:id]
     if @tip
-      @tip.destroy
-      flash[:notice] = "Tip '#{@tip.title}' deleted"
-      redirect_to admin_tips_path
+      if @tip.destroy
+        flash[:notice] = "Tip '#{@tip.title}' deleted"
+        redirect_to admin_tips_path
+      else
+        flash[:error] = "Sorry, you aren't strong enough to destroy this tip."
+        redirect_to edit_admin_tip_path
+      end
     else
       # tip was not found
       flash[:error] = "That tip does not exist."
