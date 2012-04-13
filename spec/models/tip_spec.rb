@@ -23,12 +23,6 @@ describe Tip do
       @tip.category_id = category.id
     end
   describe 'With a tip' do
-    before(:each) do 
-      @category1 = Category.new(:name=>'Cat1')
-      @category2 = Category.new(:name=>'Cat2')
-      @tip = Tip.new(:title=>"Unplug", :content => 'Simply unplug items that you dont use very often.')
-      @tip1 = FactoryGirl.create(:tip, { :title => 'Unplug!', :content => 'Simply unplug items that you dont use very often.'})
-    end
     
     describe 'we can update the title' do
       @tip1 = FactoryGirl.create(:tip, { :title => 'Unplug!', :content => 'Simply unplug items that you dont use very often.' })
@@ -56,6 +50,7 @@ describe Tip do
     
   describe 'tips should have categories' do 
     it 'should retrieve the proper tips' do
+      @category1 = Category.new(:name=>'Cat1')
       @category1.tips.should be_empty
       @tip1 = FactoryGirl.create(:tip, { :title => 'Unplug!', :content => 'Simply unplug items that you dont use very often.' })
       @tip_category = FactoryGirl.create(:category_tip, {:tip=>@tip1, :category=>@category1})

@@ -20,7 +20,7 @@ class Admin::TipsController < ApplicationController
 
   def create
     @tip = Tip.create params[:tip]
-    if @tip
+    if @tip and @tip.id
       if params[:categories]
         params[:categories].each do |name|
           # checked is always "1" in here, i.e. only checked categories are passed
@@ -37,15 +37,18 @@ class Admin::TipsController < ApplicationController
   end
 
   def edit
-    @tip = Tip.find params[:id]
+    @tip = Tip.find_by_id params[:id]
     @categories = Category.all
   end
 
   def update
-    @tip = Tip.find params[:id]
+    @tip = Tip.find_by_id params[:id]
     if @tip
-      @tip.update_attributes! params[:tip]
-      
+      valid_update = @tip.update_attributes params[:tip]
+      if !valid_update
+        flash[:error] = "Couldn't update #{@tip.name}."
+        redirect_to edit_admin_tip_path
+      end
       # remove all categories with this tip's id, in lieu of adding the selected ones
       CategoryTip.destroy_all :tip_id => params[:id]
       if params[:categories]
@@ -64,11 +67,15 @@ class Admin::TipsController < ApplicationController
   end
 
   def destroy
-    @tip = Tip.find params[:id]
+    @tip = Tip.find_by_id params[:id]
     if @tip
-      @tip.destroy
-      flash[:notice] = "Tip '#{@tip.title}' deleted"
-      redirect_to admin_tips_path
+      if @tip.destroy
+        flash[:notice] = "Tip '#{@tip.title}' deleted"
+        redirect_to admin_tips_path
+      else
+        flash[:error] = "Sorry, you aren't strong enough to destroy this tip."
+        redirect_to edit_admin_tip_path
+      end
     else
       # tip was not found
       flash[:error] = "That tip does not exist."

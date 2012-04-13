@@ -8,8 +8,14 @@
     <!-- Le styles -->
     <%= stylesheet_link_tag    "admin" %>
     <%= javascript_include_tag "admin" %>
-    <link href="/assets/admin/bootstrap.css" rel="stylesheet">
-    <link href="/assets/admin/bootstrap-responsive.css" rel="stylesheet">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <link href="/assets/admin/bootstrap.css" rel="stylesheet" />
+    <link href="/assets/admin/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="/assets/admin/jquery.wysiwyg.css" rel="stylesheet" />
+    <style type="text/css">
+      /* Overwrite default textarea width specified by bootstrap */
+      #editor { width: 550px; height: 150px; }
+    </style>
     <%= csrf_meta_tags %>
   <body>
 
