@@ -6,7 +6,12 @@ class Admin::TipsController < ApplicationController
   end
 
   def show
-    @tip = Tip.find params[:id]
+    @tip = Tip.find_by_id params[:id]
+    if !@tip
+      # redirect to the index page
+      flash[:error] = "That tip does not exist."
+      redirect_to admin_tips_path
+    end
   end
 
   def new
@@ -14,15 +19,21 @@ class Admin::TipsController < ApplicationController
   end
 
   def create
-    @tip = Tip.create! params[:tip]
-    if params[:categories]
-      params[:categories].each do |name|
-        # checked is always "1" in here, i.e. only checked categories are passed
-        CategoryTip.create! :tip_id => @tip.id, :category_id => Category.find_by_name(name).id
+    @tip = Tip.create params[:tip]
+    if @tip
+      if params[:categories]
+        params[:categories].each do |name|
+          # checked is always "1" in here, i.e. only checked categories are passed
+          CategoryTip.create :tip_id => @tip.id, :category_id => Category.find_by_name(name).id
+        end
       end
+      flash[:notice] = "#{@tip.title} was sucessfully created."
+      redirect_to admin_tips_path
+    else
+      # tip create failed, redirect back to "new" view
+      flash[:error] = "Tip creation failed."
+      redirect_to new_admin_tip_path
     end
-    flash[:notice] = "#{@tip.title} was sucessfully created."
-    redirect_to admin_tips_path
   end
 
   def edit
@@ -32,23 +43,37 @@ class Admin::TipsController < ApplicationController
 
   def update
     @tip = Tip.find params[:id]
-    
-    # categories = params[:categories].each { |category|
-    #  Category.where(:name => category).first
-    # }
-    # @tip.categories = categories
-    # This throws an error, but I am not sure why
-    @tip.update_attributes! params[:tip]
-
-    flash[:notice] = "#{@tip.title} was succuessfully updated."
-    redirect_to admin_tip_path @tip
+    if @tip
+      @tip.update_attributes! params[:tip]
+      
+      # remove all categories with this tip's id, in lieu of adding the selected ones
+      CategoryTip.destroy_all :tip_id => params[:id]
+      if params[:categories]
+        params[:categories].each do |name|
+          # checked is always "1" in here, i.e. only checked categories are passed
+          CategoryTip.create! :tip_id => params[:id], :category_id => Category.find_by_name(name).id
+        end
+      end
+      flash[:notice] = "#{@tip.title} was succuessfully updated."
+      redirect_to admin_tip_path @tip
+    else
+      # Couldn't find the tip, redirect to the index page with an error
+      flash[:error] = "That tip does not exist."
+      redirect_to admin_tips_path
+    end
   end
 
   def destroy
     @tip = Tip.find params[:id]
-    @tip.destroy
-    flash[:notice] = "Tip '#{@tip.title}' deleted"
-    redirect_to admin_tips_path
+    if @tip
+      @tip.destroy
+      flash[:notice] = "Tip '#{@tip.title}' deleted"
+      redirect_to admin_tips_path
+    else
+      # tip was not found
+      flash[:error] = "That tip does not exist."
+      redirect_to admin_tips_path
+    end
   end
 
 end
