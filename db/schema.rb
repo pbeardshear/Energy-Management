@@ -11,9 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 
 ActiveRecord::Schema.define(:version => 20120410044857) do
 
+=======
+ActiveRecord::Schema.define(:version => 20120403014531) do
+>>>>>>> parent of 5905cb5... unneeded tip stuff on top of Huan's code
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -21,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20120410044857) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   create_table "category_tips", :force => true do |t|
 
     t.datetime "created_at"
@@ -30,6 +35,8 @@ ActiveRecord::Schema.define(:version => 20120410044857) do
 
   end
 
+=======
+>>>>>>> parent of 5905cb5... unneeded tip stuff on top of Huan's code
   create_table "device_categories", :force => true do |t|
     t.integer  "setting_id"
     t.integer  "category_id"
