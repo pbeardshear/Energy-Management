@@ -28,11 +28,12 @@ describe 'The admin tips' do
     driver.find_element(:id => 'tip_title').send_keys "selenium"
     driver.find_element(:id => 'categories_General').click
     content1 = 'this is a test content, you should never see this'
+    # Switch context to the iframe
     driver.switch_to().frame('editor-wysiwyg-iframe');
-#    WebElement editable = driver.switch_to().active_element
+    # Send the keys to the active body (which is content-editable) in the frame
     driver.switch_to().active_element.send_keys content1
+    # Switch back to the parent document
     driver.switch_to().default_content
-#    driver.find_element(:id => 'editor-wysiwyg-iframe').send_keys content1
     driver.find_element(:css => ".btn-success").click
     driver.get 'http://0.0.0.0:3000/admin/tips/'
 
@@ -44,11 +45,12 @@ describe 'The admin tips' do
     element.click
     driver.find_element(:id => 'edit-tip').click
     content2 = ', ok this is an addition to the content'
+    # Switch context to the iframe
     driver.switch_to().frame('editor-wysiwyg-iframe');
-#    WebElement editable = driver.switch_to().active_element
+    # Send the keys to the active body (which is content-editable) in the frame
     driver.switch_to().active_element.send_keys content2
+    # Switch back to the parent document
     driver.switch_to().default_content
-#    driver.find_element(:id => 'editor-wysiwyg-iframe').send_keys content2
     driver.find_element(:css => ".btn-success").click
     driver.get 'http://0.0.0.0:3000/admin/tips/'    
 
