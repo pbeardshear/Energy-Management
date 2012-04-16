@@ -28,7 +28,11 @@ describe 'The admin tips' do
     driver.find_element(:id => 'tip_title').send_keys "selenium"
     driver.find_element(:id => 'categories_General').click
     content1 = 'this is a test content, you should never see this'
-    driver.find_element(:id => 'tip_content').send_keys content1
+    driver.switch_to().frame('editor-wysiwyg-iframe');
+#    WebElement editable = driver.switch_to().active_element
+    driver.switch_to().active_element.send_keys content1
+    driver.switch_to().default_content
+#    driver.find_element(:id => 'editor-wysiwyg-iframe').send_keys content1
     driver.find_element(:css => ".btn-success").click
     driver.get 'http://0.0.0.0:3000/admin/tips/'
 
@@ -38,18 +42,22 @@ describe 'The admin tips' do
     # modify the tip
     element = driver.find_elements(:css => 'table > tbody > tr > td > a').select { |tag| tag.text.include? 'selenium' }[0]
     element.click
-    driver.find_element(:css => 'button').click
+    driver.find_element(:id => 'edit-tip').click
     content2 = ', ok this is an addition to the content'
-    driver.find_element(:id => 'tip_content').send_keys content2
+    driver.switch_to().frame('editor-wysiwyg-iframe');
+#    WebElement editable = driver.switch_to().active_element
+    driver.switch_to().active_element.send_keys content2
+    driver.switch_to().default_content
+#    driver.find_element(:id => 'editor-wysiwyg-iframe').send_keys content2
     driver.find_element(:css => ".btn-success").click
     driver.get 'http://0.0.0.0:3000/admin/tips/'    
 
     # check if the modification has been saved
-    assert driver.find_elements(:css => 'table > tbody > tr > td').select { |tag| tag.text.include? content1 + content2 }.size.should == 1
+    assert driver.find_elements(:css => 'table > tbody > tr > td').select { |tag| (tag.text.include?(content1) && tag.text.include?(content2)) }.size.should == 1
 
     # delete the the tip
     driver.find_elements(:css => 'table > tbody > tr > td > a').select { |tag| tag.text.include? 'selenium' }[0].click
-    driver.find_element(:css => 'button').click
+    driver.find_element(:id => 'edit-tip').click
     driver.find_element(:css => ".btn-danger").click
     driver.get 'http://0.0.0.0:3000/admin/tips/'    
     
