@@ -6,16 +6,21 @@
   <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script>
   <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1" />
+  <style type="text/css">
+    #logo { background-color: #1b1d42; }
+ }
+
+    .ui-header, .ui-title, .ui-footer { text-overflow: inherit !important; margin-left: 0 !important; margin-right: 0 !important; }
+  </style>
 </head>
 <body>
-  <div data-role="header" data-theme="b">
-    <h1>Energy Management</h1>
+  <div id="logo" align="center">
+    <img src="/assets/logo.png" height="70px" />
   </div>
-  
   <div data-role="content">
     <div class="container">
-	  <div class="content">
-	    <img src="/assets/logo.jpeg"></img></br></br>
+	  <div class="content" align="center">
+	    
 	    <div data-role="collapsible" data-theme="c" data-content-theme="c">
 	      <h3>Energy Tip of the Day</h3>
         <p>Turn off your computer monitor if left unattended for more than 10 minutes.</p>
