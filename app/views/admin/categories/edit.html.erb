@@ -1,0 +1,37 @@
+
+<h3>
+	Update "<%=@category.name%>"
+</h3>
+<%= form_tag admin_tip_path(@category), :method => 'put' do %>
+  <%= label_tag :name, 'Name' %>
+  <%= text_field :category, 'name' %>
+
+  <br />
+  <%= submit_tag 'Update Category', :class => 'btn btn-success' %>
+<% end %>
+
+
+<h3>
+	Delete "<%=@category.name%>"
+</h3>
+
+<h5>
+	Specify a new category to move the tips to or leave this blank if you don't want the tips to belong to a new category.
+</h5>
+
+  <%= label_tag :categories, 'Categories' %>
+  <% @categories.each do |category| %>
+    <label class="radio">
+	  <% if @category.name != category.name %>
+		<%= radio_button "newCategory", 1, 0 %>
+		<%= category.name %>
+	  <% end %>
+    </label>
+  <% end %>
+  
+  <label class="radio">
+	<%= radio_button "newCategory", 1, 0 %> (New Category)
+	<br />
+  </label>
+  <%= text_field "new category", 'name' %>
+  <%= button_to 'Delete Category', admin_category_path(@category), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-danger'%>

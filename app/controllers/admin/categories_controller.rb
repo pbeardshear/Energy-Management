@@ -32,6 +32,8 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def edit
+	@category = Category.find_by_id params[:id]
+	@categories = Category.all
   end
 
   def update
