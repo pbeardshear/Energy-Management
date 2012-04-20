@@ -4,6 +4,8 @@ EnegeryManagement::Application.routes.draw do
 
   resources :halls, :only => [:index, :show]
 
+  resource :admin, :only => [:index, :show]
+
   namespace :admin do
     resources :tips
     resources :categories
