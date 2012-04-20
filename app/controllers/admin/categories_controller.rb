@@ -75,12 +75,14 @@ class Admin::CategoriesController < ApplicationController
         # Create a new CategoryTip entry for each checked tip
         params[:tips].each do |id|
           CategoryTip.create :tip_id => id, :category_id => @category.id
+        end
       end
       flash[:notice] = "#{@category.name} tips was successfully updated."
       redirect_to admin_category_path @category
     else
       # Couldn't find the category, redirect to the index page with an error
       flash[:error] = "That category does not exist."
+      redirect_to admin_categories_path
     end
   end
 
