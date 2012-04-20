@@ -2,8 +2,6 @@ EnegeryManagement::Application.routes.draw do
 
   resources :halls, :only => [:index, :show]
 
-  resources :categories, :only => [:index, :show]
-      
   namespace :admin do
     resources :tips
     resources :categories
