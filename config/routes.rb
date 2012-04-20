@@ -4,7 +4,12 @@ EnegeryManagement::Application.routes.draw do
 
   namespace :admin do
     resources :tips
-    resources :categories
+    resources :categories do
+      member do
+        get 'edit_tips'
+        put 'update_tips'
+      end
+    end
   end
 
   # The priority is based upon order of creation:
