@@ -1,5 +1,5 @@
 class Admin::CategoriesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_admin!
   layout 'admin'
 
   def index
