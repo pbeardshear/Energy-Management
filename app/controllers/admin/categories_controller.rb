@@ -9,7 +9,7 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.find_by_id(params[:id])
     if !@category
       flash[:error] = 'That category does not exist.'
-      redirect_to categories_path
+      redirect_to admin_categories_path
     else
       @category_tips = @category.tips
     end
