@@ -1,17 +1,3 @@
-<% if flash[:notice] %>
-  <div class="alert alert-success">
-    <a class="close" data-dismiss="alert">×</a>
-    <h4 class="alert-heading"><%=flash[:notice]%></h4>
-  </div>
-<% end %>
-
-<% if flash[:error] %>
-  <div class="alert alert-error">
-    <a class="close" data-dismiss="alert">×</a>
-    <h4 class="alert-heading"><%=flash[:error]%></h4>
-  </div>
-<% end %>
-
 <a href="/admin/categories/new">
   <button class="btn">
     New Category
