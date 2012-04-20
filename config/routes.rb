@@ -1,5 +1,7 @@
 EnegeryManagement::Application.routes.draw do
 
+  devise_for :admins
+
   resources :halls, :only => [:index, :show]
 
   namespace :admin do

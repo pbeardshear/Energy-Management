@@ -24,6 +24,7 @@ group :production do
 end
 
 gem 'jquery-rails'
+gem 'devise'
 
 group :assets do
   gem 'therubyracer'
