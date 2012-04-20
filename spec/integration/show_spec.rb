@@ -32,5 +32,6 @@ describe 'show hall page' do
 
     # the week button should be highlighted
     assert driver.find_element(:css => "a.intervalSelection.ui-btn-active > .ui-btn-inner").text == "Month"
+    driver.close
   end
 end

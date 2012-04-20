@@ -65,5 +65,8 @@ describe 'The admin tips' do
     
     # make sure that tag is empty
     assert driver.find_elements(:css => 'table > tbody > tr > td').select { |tag| tag.text.include? content1 + content2 }.size.should == 0
+
+    # tear down
+    driver.close
   end
 end

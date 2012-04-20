@@ -1,10 +1,9 @@
+1. migrate and seed
+    rake db:migrate
+    rake db:seed
 
-1. Start the server in the test environment
-    rails server -e test
-
-2. migrate and seed the test enviroment (ONLY ONCE)
-    rake environment RAILS_ENV=test db:migrate
-    rake environment RAILS_ENV=test db:seed
+2. Start the server in the test environment
+    rails server
 
 3. Now you can run the spec
     rake spec
