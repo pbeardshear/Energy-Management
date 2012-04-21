@@ -1,0 +1,8 @@
+<p>FILL ME IN, BELOW IS A LOOP THAT GETS EVERYTHING</p>
+<% @tips.each do |tip| %>
+   <%= link_to tip.title, admin_tip_path(tip)%>
+   <% tip.categories.each_index do |i|%>
+     <%= tip.categories[i].name %><% if i + 1 != tip.categories.length %>,<% end %>
+   <% end %>
+   <%=tip.content%>
+<% end %>

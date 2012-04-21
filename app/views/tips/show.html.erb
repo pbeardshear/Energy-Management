@@ -1,0 +1,6 @@
+<p>FILL ME IN, BELOW IS A LOOP THAT GETS EVERYTHING</p>
+<%=@tip.title%>
+<% @tip.categories.each do |category| %>
+   <%= category.name %>
+<% end %>
+<%= @tip.content %>

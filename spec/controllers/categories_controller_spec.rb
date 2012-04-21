@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CategoriesController do
+describe Admin::CategoriesController do
   before :each do
     @category = Category.new(:name=>'Cat1')
     @tip = FactoryGirl.create(:tip, { :title => 'Unplug!', :content => 'Simply unplug items that you dont use very often.' })
