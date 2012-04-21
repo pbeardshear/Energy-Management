@@ -6,6 +6,7 @@ EnegeryManagement::Application.routes.draw do
   resources :halls, :only => [:index, :show]
 
   resources :admin, :only => [:index]
+  resources :tips, :only => [:index]
 
   namespace :admin do
     resources :tips

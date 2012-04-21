@@ -1,12 +1,69 @@
+<style text="css">
+  .ui-li-thumb { height: 16px; top: 12px !important; }
+</style>
+
 <div data-role="header" data-position="fixed" data-theme="b">
+  <!--<a href="#" id="pinBuildings">Pin</a>-->
   <h1>Buildings</h1>
 </div>
 
 <div data-role="content">
+  <!-- Pinned items -->
+  <!--
   <ul data-role="listview" data-inset="true" data-theme="c">
+    <li data-role="list-divider" data-theme="b" role="heading">
+      Pinned Buildings
+      <span class="ui-li-count">3</span>
+    </li>
+    <li><a href="halls/2" data-ajax="false"><img src="/assets/pin-in.png" class="ui-li-icon ui-li-thumb" style="display:none;" />Evans Hall</a></li>
+    <li><a href="halls/4" data-ajax="false"><img src="/assets/pin-in.png" class="ui-li-icon ui-li-thumb" style="display:none;" />Cory Hall</a></li>
+    <li><a href="halls/6" data-ajax="false"><img src="/assets/pin-in.png" class="ui-li-icon ui-li-thumb" style="display:none;" />Dwinelle Hall</a></li>
+  </ul>
+  -->
+  <!-- All items -->
+  <ul data-role="listview" data-inset="true" data-theme="c">
+    <li data-role="list-divider" data-theme="b" role="heading">
+      All Buildings
+      <span class="ui-li-count">10</span>
+    </li>
     <% @halls.each do |hall| %>
-      <li><a href="halls/<%= hall.id %>" data-ajax="false"><%= hall.name %></a></li>
+      <li>
+        <a href="halls/<%= hall.id %>" data-ajax="false">
+          <img src="/assets/pin.png" class="ui-li-icon ui-li-thumb" style="display:none;" />
+          <%= hall.name %>
+        </a>
+      </li>
     <% end %>
   </ul>
 </div>
+
+<!-- Handle pin button click -->
+<script type="text/javascript">
+  /*
+  var initialized = false;
+  $(document).bind('pageinit', function () {
+    // Necessary, because jQuery Mobile fires 'pageinit' twice
+    if (!initialized) {
+      $('#pinBuildings').bind('click', function (e) {
+        // Apply a data-icon to each of the list items
+        $('li img').toggle();
+        
+        // Toggle the pin button between pin and end
+        var button;
+        if ((button = $('#pinBuildings .ui-btn-text')).text() == 'Pin') {
+          $(this).removeClass('ui-btn-up-b').removeClass('ui-btn-hover-b');
+          $(this).attr('data-theme', 'a');
+          button.text('End');
+        }
+        else {
+          $(this).removeClass('ui-btn-hover-a').removeClass('ui-btn-up-a');
+          $(this).attr('data-theme', 'b');
+          button.text('Pin');
+        }
+      });
+      initialized = true;
+    }
+  });
+  */
+</script>
 

@@ -4,11 +4,24 @@ if Hall.where(:id => 1).empty?
   GreenFeature.create(:id =>1, :name => "Flourescent Light Bulbs", :content => "This hall has low-wattage light bulbs.")
   HallFeature.create(:hall_id => 1, :green_feature_id => 1)
 end
+Category_general = Category.find_by_name("General")
+Category_office = Category.find_by_name("Office")
+Category_lab = Category.find_by_name("Lab")
+Category_reshall = Category.find_by_name("Residence Hall")
 
-Category_general = Category.create(:name=>"General")
-Category_office = Category.create(:name=>"Office")
-Category_lab = Category.create(:name=>"Lab")
-Category_reshall = Category.create(:name=>"Residence Hall")
+
+if(Category_general == nil) 
+	Category_general = Category.create(:name=>"General")
+end
+if(Category_office == nil)
+	Category_office = Category.create(:name=>"Office")
+end
+if(Category_lab == nil)
+	Category_lab = Category.create(:name=>"Lab")
+end
+if(Category_reshall == nil)
+	Category_reshall = Category.create(:name=>"Residence Hall")
+end
 
 generalTips = Array[
 Tip.create(:title=>"Turn off what you\'re not using", :content=>"Monitors and lights when you\'re away for more than 15 minutes"),
