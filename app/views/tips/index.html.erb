@@ -4,7 +4,7 @@
 
 <div data-role="content">
   <% @categories.each do |category, tips| %>
-    <div data-role="collapsible" data-theme="b" data-content-theme="c">
+    <div data-role="collapsible" data-theme="b" data-content-theme="c" class="Category_<%= category %>">
       <h3><%=category%></h3>
       <ul data-role="listview" data-theme="c" data-inset="true">
         <% tips.each do |tip| %>
