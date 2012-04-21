@@ -4,12 +4,11 @@ class TipsController < ApplicationController
   end
   
   def show
-    @category = Category.find_by_id(params[:id])
-    if !@category
-      flash[:error] = 'That category does not exist.'
-      redirect_to categories_path
-    else
-      @category_tips = @category.tips
+    @tip = Tip.find_by_id params[:id]
+    if !@tip
+      # redirect to the index page
+      flash[:error] = "That tip does not exist."
+      redirect_to admin_tips_path
     end
   end
 end
