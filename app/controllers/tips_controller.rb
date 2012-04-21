@@ -1,4 +1,6 @@
 class TipsController < ApplicationController
+  layout 'mobile'
+
   def index
     @categories = {}
     # Build up the possible categories
