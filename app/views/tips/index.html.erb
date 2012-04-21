@@ -3,6 +3,7 @@
 </div>
 
 <div data-role="content">
+
   <% @categories.each do |category, tips| %>
     <div data-role="collapsible" data-theme="b" data-content-theme="c">
       <h3 class="Category_<%= category %>"><%=category%></h3>
@@ -16,5 +17,19 @@
       </ul>
     </div>
   <% end %>
-  
+
 </div>
+
+<script type="text/javascript">
+  $(document).bind('pageinit', function () {
+    var initialized = false;
+    if (!initialized) {
+      $('div.ui-collapsible').bind('click', function () {
+        $(this).attr('value', $(this).attr('value') == 'open' ? 'closed' : 'open');
+        
+      });
+      initialized = true;
+    }
+  });
+</script>
+
