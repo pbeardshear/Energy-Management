@@ -25,8 +25,7 @@
     var initialized = false;
     if (!initialized) {
       $('div.ui-collapsible').bind('click', function () {
-        $(this).attr('value', $(this).attr('value') == 'open' ? 'closed' : 'open');
-        
+        $(this).attr('value', $(this).hasClass('ui-collapsible-collapsed') ? 'closed' : 'open');
       });
       initialized = true;
     }
