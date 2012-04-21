@@ -21,24 +21,4 @@ describe TipsController do
       get :index
     end
   end
-
-  describe 'show a tip' do
-    it 'should find the correct tip by id' do
-      Tip.should_receive(:find_by_id).with(@tip2.id.to_s).and_return(@tip2)
-      get :show, :id => @tip2.id
-    end
-    context 'id not found' do
-      before :each do
-        Tip.stub(:find_by_id).and_return(nil)
-        get :show, :id => 3
-      end
-      it 'should set an error message notifying admin of failure' do
-        flash[:error].should == "That tip does not exist."
-      end
-      it 'should redirect to the tip index page for admins' do
-        response.should redirect_to(admin_tips_path)
-      end
-    end
-  end
-
 end
