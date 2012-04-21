@@ -28,12 +28,11 @@ describe 'tips index page' do
     # @categories["Lab"].size }
       
     driver.find_element(:css => 'h3.Category_Office').click
-    wait10.until {     driver.find_elements(:css => list_item_selector).size == 22 + 24 }
+    wait10.until { driver.find_elements(:css => list_item_selector).size == 22 + 24 }
     # @categories["Lab"].size + @categories["Office"].size 
 
     driver.find_element(:css => 'h3.Category_Lab').click
-    p driver.find_elements(:css => list_item_selector).size
-    wait10.until {     driver.find_elements(:css => list_item_selector).size == 24 } 
+    wait10.until { driver.find_elements(:css => list_item_selector).size == 24 } 
     # @categories["Office"].size 
 
     driver.find_element(:css => 'h3.Category_Office').click
