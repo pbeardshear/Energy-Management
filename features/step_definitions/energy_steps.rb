@@ -1,3 +1,10 @@
+Given /the following tips exist/ do |tip_table|
+  tip_table.hashes.each do |tip|
+    Tip.new(tip).save
+  end
+end
+
+
 Given /^I am not authenticated$/ do
   visit('/admins/sign_out') # ensure that at least
 end
@@ -11,8 +18,12 @@ Given /^I am a new authenticated user$/ do
   fill_in "admin_email", :with=>email
   fill_in "admin_password", :with=>password
   click_button "Sign In"
-
 end
+
+And /^I fill the editor with "(.*)"$/ do |content|
+  page.execute_script("$('iframe').contents().find('body').html('#{content}')")
+end
+
 
 # Given /I am viewing "(.*)" hall/ do |hall|
 #   pending
