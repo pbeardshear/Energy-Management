@@ -4,6 +4,11 @@ Given /the following tips exist/ do |tip_table|
   end
 end
 
+Given /the following categories exist/ do |category_table|
+  category.table.hashes.each do |category|
+    Category.new(category).save
+  end
+end
 
 Given /^I am not authenticated$/ do
   visit('/admins/sign_out') # ensure that at least

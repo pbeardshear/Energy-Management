@@ -44,8 +44,6 @@ Scenario: I should be able to delete tips [D]
 	  Then I should see "shower together"
  	  When I follow "save water"
  	  And I press "Edit"
- 	  And I fill in "tip_title" with "be clean"
  	  And I press "Delete Tip"
  	  Then I should see "'save water' deleted"
 	  Then I should not see "shower together"
-
