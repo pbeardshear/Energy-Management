@@ -12,7 +12,7 @@ end
 
 Given /the following halls exist/ do |hall_table|
   hall_table.hashes.each do |hall|
-    Hall.new(hall).save
+    Hall.new(hall).save!
   end
 end
 
