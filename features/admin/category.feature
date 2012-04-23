@@ -32,7 +32,7 @@ Scenario: I should be able to create a create a category, and see it [C]
  	  And I press "Edit"
  	  And I fill in "category_name" with "lab"
  	  And I press "Update Category"
-#         Then I should see "be clean was successfully updated"
+          Then I should see "lab was successfully updated"
  	  And I go to "/admin/categories"
  	  And I should see "lab"
  	  And I should not see "general"

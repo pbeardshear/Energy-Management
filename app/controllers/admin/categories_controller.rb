@@ -45,7 +45,7 @@ class Admin::CategoriesController < ApplicationController
         flash[:error] = "Couldn't update #{@category.name}"
         redirect_to edit_admin_category_path
       else
-        flash[:notice] = "#{@category.name} name was successfully updated."
+        flash[:notice] = "#{@category.name} was successfully updated."
         redirect_to admin_categories_path @category
       end
     else
