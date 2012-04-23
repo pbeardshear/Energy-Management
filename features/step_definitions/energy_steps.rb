@@ -5,7 +5,7 @@ Given /the following tips exist/ do |tip_table|
 end
 
 Given /the following categories exist/ do |category_table|
-  category.table.hashes.each do |category|
+  category_table.hashes.each do |category|
     Category.new(category).save
   end
 end
