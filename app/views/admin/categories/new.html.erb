@@ -1,0 +1,7 @@
+<%= form_tag admin_categories_path, :method => 'post' do %>
+  <%= label_tag :title, 'Title' %>
+  <%= text_field :category, 'name' %>
+
+  <br />
+  <%= submit_tag 'Create category', :class => 'btn btn-success' %>
+<% end %>
