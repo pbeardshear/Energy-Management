@@ -8,41 +8,121 @@
 </div>
 
 <div data-role="content">
-  <!-- Pinned items -->
-  <ul data-role="listview" data-inset="true" data-theme="c" id="pinnedList">
+  <ul data-role="listview" data-inset="true" data-theme="c" id="buildingList" data-filter="true">
     <li data-role="list-divider" data-theme="b" role="heading">
-      Pinned Buildings
-      <span class="ui-li-count">3</span>
+      Buildings
+      <span class="ui-li-count">4</span>
     </li>
     <li>
-      <a href="halls/2" data-ajax="false"><img src="/assets/pin-in.png" class="ui-li-icon ui-li-thumb" style="display:none;" />Evans Hall</a>
+      <a href="halls/2" data-ajax="false"><img src="/assets/pin.png" class="ui-li-icon ui-li-thumb" style="display:none;" />Evans Hall</a>
     </li>
     <li>
-      <a href="halls/4" data-ajax="false"><img src="/assets/pin-in.png" class="ui-li-icon ui-li-thumb" style="display:none;" />Cory Hall</a>
+      <a href="halls/4" data-ajax="false"><img src="/assets/pin.png" class="ui-li-icon ui-li-thumb" style="display:none;" />Cory Hall</a>
     </li>
     <li>
-      <a href="halls/6" data-ajax="false"><img src="/assets/pin-in.png" class="ui-li-icon ui-li-thumb" style="display:none;" />Dwinelle Hall</a>
+      <a href="halls/6" data-ajax="false"><img src="/assets/pin.png" class="ui-li-icon ui-li-thumb" style="display:none;" />Dwinelle Hall</a>
     </li>
-  </ul>
-  <!-- All items -->
-  <ul data-role="listview" data-inset="true" data-theme="c" id="allList">
-    <li data-role="list-divider" data-theme="b" role="heading">
-      All Buildings
-      <span class="ui-li-count">10</span>
+    <li>
+      <a href="halls/8" data-ajax="false"><img src="/assets/pin.png" class="ui-li-icon ui-li-thumb" style="display:none;" />Soda Hall</a>
     </li>
+    
     <% @halls.each do |hall| %>
       <li>
-        <a href="halls/<%= hall.id %>" data-ajax="false">
-          <img src="/assets/pin.png" class="ui-li-icon ui-li-thumb" style="display:none;" />
-          <%= hall.name %>
+        <a href="halls/<%=hall.id%>" data-ajax="false"><img src="/assets/pin.png" class="ui-li-icon ui-li-thumb" style="display:none;" />
+          <%=hall.name%>
         </a>
       </li>
     <% end %>
   </ul>
+  
 </div>
+
+<script type="text/javascript">
+  var initialized = false,
+      pinning = false;
+      
+  // Insert element el at an arbitrary index in container
+  function insertAt(container, index, el) {
+    // index + 1, to account for the header item
+    $(container).children(':nth-child(' + (index + 1) + ')').after(el);
+  }
+  
+  function togglePinned(el) {
+    var img = $(el).find('img');
+    if (el.hasClass('li-pinned')) {
+      img.attr('src', '/assets/pin.png');
+      $(el).removeClass('li-pinned');
+    }
+    else {
+      img.attr('src', '/assets/pin-in.png');
+      $(el).addClass('li-pinned');
+      img.show();
+    }
+  }
+  
+  $(document).bind('pageinit', function () {
+    // Necessary, because jQuery Mobile calls 'pageinit' twice
+    if (!initialized) {
+      var pinnedItems = JSON.parse(localStorage.getItem('pinned') || "[]"),
+          container = $('#buildingList');
+      // Iterate over the pinned items, and move the elements into their correct locations
+      for (var i = 0; i < pinnedItems.length; i++) {
+        var pinned = container.find('li:contains("' + pinnedItems[i] + '")');
+        togglePinned(pinned);
+        insertAt(container, i, pinned);
+      }
+      
+      $('#pinBuildings').bind('click', function (event) {
+        
+        // Show the pin icon
+        $('#buildingList li:not(.li-pinned) img').toggle();
+        pinning = !pinning;
+        
+      });
+      
+      $('#buildingList a').bind('click', function (event) {
+        if (pinning) {
+          var text = $(this).text(),
+              li = $(this).closest('li');
+          event.preventDefault();
+          
+          // Move the element to the top of the list
+          // Iterate through the list of pinned items
+          for (var i = 0; i < pinnedItems.length; i++) {
+            if (pinnedItems[i] > text) {
+              break;
+            }
+          }
+          pinnedItems.splice(i, 0, text);
+          // Place the item at index i
+          insertAt($('#buildingList'), i, li);
+          
+          // Change the image icon to the pinned one
+          togglePinned(li);
+          
+          return false;
+        }
+        else {
+          // User is just navigating
+          return true;
+        }
+      });
+      
+      window.onbeforeunload = function () {
+        localStorage.setItem('pinned', JSON.stringify(pinnedItems));
+      };
+      
+      initialized = true;
+    }
+    
+  });
+  
+</script>
+
 
 <!-- Handle pin button click -->
 <script type="text/javascript">
+  /*
   var initialized = false,
       pinning = false;
   $(document).bind('pageinit', function () {
@@ -50,22 +130,8 @@
     if (!initialized) {
       $('#pinBuildings').bind('click', function (e) {
         // Apply a data-icon to each of the list items
-        $('li img').toggle();
-        
-        // Toggle the pin button between pin and end
-        var button;
-        if ((button = $('#pinBuildings .ui-btn-text')).text() == 'Pin') {
-          $(this).removeClass('ui-btn-up-b').removeClass('ui-btn-hover-b');
-          $(this).attr('data-theme', 'a');
-          button.text('End');
-          pinning = true;
-        }
-        else {
-          $(this).removeClass('ui-btn-hover-a').removeClass('ui-btn-up-a');
-          $(this).attr('data-theme', 'b');
-          button.text('Pin');
-          pinning = false;
-        }
+        $('#buildingList img').toggle();
+        pinned = !pinned;
       });
       
       $('.ui-listview .ui-li a').bind('click', function (e) {
@@ -97,5 +163,6 @@
       initialized = true;
     }
   });
+  */
 </script>
 
