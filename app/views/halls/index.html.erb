@@ -3,25 +3,29 @@
 </style>
 
 <div data-role="header" data-position="fixed" data-theme="b">
-  <!--<a href="#" id="pinBuildings">Pin</a>-->
+  <a href="#" id="pinBuildings">Pin</a>
   <h1>Buildings</h1>
 </div>
 
 <div data-role="content">
   <!-- Pinned items -->
-  <!--
-  <ul data-role="listview" data-inset="true" data-theme="c">
+  <ul data-role="listview" data-inset="true" data-theme="c" id="pinnedList">
     <li data-role="list-divider" data-theme="b" role="heading">
       Pinned Buildings
       <span class="ui-li-count">3</span>
     </li>
-    <li><a href="halls/2" data-ajax="false"><img src="/assets/pin-in.png" class="ui-li-icon ui-li-thumb" style="display:none;" />Evans Hall</a></li>
-    <li><a href="halls/4" data-ajax="false"><img src="/assets/pin-in.png" class="ui-li-icon ui-li-thumb" style="display:none;" />Cory Hall</a></li>
-    <li><a href="halls/6" data-ajax="false"><img src="/assets/pin-in.png" class="ui-li-icon ui-li-thumb" style="display:none;" />Dwinelle Hall</a></li>
+    <li>
+      <a href="halls/2" data-ajax="false"><img src="/assets/pin-in.png" class="ui-li-icon ui-li-thumb" style="display:none;" />Evans Hall</a>
+    </li>
+    <li>
+      <a href="halls/4" data-ajax="false"><img src="/assets/pin-in.png" class="ui-li-icon ui-li-thumb" style="display:none;" />Cory Hall</a>
+    </li>
+    <li>
+      <a href="halls/6" data-ajax="false"><img src="/assets/pin-in.png" class="ui-li-icon ui-li-thumb" style="display:none;" />Dwinelle Hall</a>
+    </li>
   </ul>
-  -->
   <!-- All items -->
-  <ul data-role="listview" data-inset="true" data-theme="c">
+  <ul data-role="listview" data-inset="true" data-theme="c" id="allList">
     <li data-role="list-divider" data-theme="b" role="heading">
       All Buildings
       <span class="ui-li-count">10</span>
@@ -39,8 +43,8 @@
 
 <!-- Handle pin button click -->
 <script type="text/javascript">
-  /*
-  var initialized = false;
+  var initialized = false,
+      pinning = false;
   $(document).bind('pageinit', function () {
     // Necessary, because jQuery Mobile fires 'pageinit' twice
     if (!initialized) {
@@ -54,16 +58,44 @@
           $(this).removeClass('ui-btn-up-b').removeClass('ui-btn-hover-b');
           $(this).attr('data-theme', 'a');
           button.text('End');
+          pinning = true;
         }
         else {
           $(this).removeClass('ui-btn-hover-a').removeClass('ui-btn-up-a');
           $(this).attr('data-theme', 'b');
           button.text('Pin');
+          pinning = false;
         }
       });
+      
+      $('.ui-listview .ui-li a').bind('click', function (e) {
+        if (pinning) {
+          e.preventDefault();
+          var pinnedList = $('#pinnedList'),
+              counter = $('#pinnedList .ui-li-count'),
+              newItem = $(this).closest('li').clone();
+          // Add this list item to the pinned section
+          // If there are no pinned items, we will need to show the section
+          if (!pinnedList.is(':visible')) {
+            pinnedList.show();
+          }
+          // Change the pin image of the new item
+          newItem.find('img').attr('src', '/assets/pin-in.png');
+          
+          pinnedList.append(newItem);
+          // Increment the list counter
+          counter.text((parseInt(counter.text()) || 0) + 1);
+          
+          return false;
+        }
+        else {
+          // User is just navigating
+          return true;
+        }
+      });
+      
       initialized = true;
     }
   });
-  */
 </script>
 
