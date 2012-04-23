@@ -31,13 +31,33 @@ describe Tip do
       @tip1.title.should == 'hello'
     end
     
-   describe 'we can update the content' do
-     @tip1 = FactoryGirl.create(:tip, { :title => 'Unplug!', :content => 'Simply unplug items that you dont use very often.' })
-     @tip1[:content] = 'helloworld'
-     @tip1.save!
-     @tip1.content.should == 'helloworld'
+    describe 'we can update the content' do
+      @tip1 = FactoryGirl.create(:tip, { :title => 'Unplug!', :content => 'Simply unplug items that you dont use very often.' })
+      @tip1[:content] = 'helloworld'
+      @tip1.save!
+      @tip1.content.should == 'helloworld'
     end
     
+    describe 'tip by category is correct' do
+      it 'should include correct tips' do
+        @tip1 = FactoryGirl.create(:tip, { :title => 'Unplug!', :content => 'Simply unplug items that you dont use very often.' })
+        @tip2 = FactoryGirl.create(:tip, { :title => 'Save Water!', :content => 'Show together' })
+        @category1 = FactoryGirl.create(:category, { :name => "General" })
+        @category2 = FactoryGirl.create(:category, { :name => "Office" })
+        @category3 = FactoryGirl.create(:category, { :name => "Lab" })
+        @tip_category1 = FactoryGirl.create(:category_tip, {:tip=>@tip1, :category=>@category1})
+        @tip_category2 = FactoryGirl.create(:category_tip, {:tip=>@tip1, :category=>@category2})
+        @tip_category2 = FactoryGirl.create(:category_tip, {:tip=>@tip2, :category=>@category2})
+
+        @tips_by_category = Tip.tips_by_categories
+        @tips_by_category[@category1.name].should include(@tip1)
+        @tips_by_category[@category1.name].should_not include(@tip2)
+        @tips_by_category[@category2.name].should include(@tip1)
+        @tips_by_category[@category2.name].should include(@tip2)
+        @tips_by_category[@category3.name].should == nil
+      end
+    end
+
 #    describe 'we can update the category' do
 #      @tip1 = FactoryGirl.create(:tip, { :title => 'Unplug!', :content => 'Simply unplug items that you dont use very often.' })
 #      @category1 = Category.new(:name=>'Cat1')

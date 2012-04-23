@@ -1,11 +1,12 @@
 require 'spec_helper'
 
-describe CategoriesController do
+describe Admin::CategoriesController do
   before :each do
     @category = Category.new(:name=>'Cat1')
     @tip = FactoryGirl.create(:tip, { :title => 'Unplug!', :content => 'Simply unplug items that you dont use very often.' })
     @tip_category = FactoryGirl.create(:category_tip, {:tip=>@tip, :category=>@category})
     Category.stub(:find_by_id).and_return(@category)
+    controller.stub!(:authenticate_admin!)
   end
   
   describe 'access the categories index' do
@@ -20,7 +21,7 @@ describe CategoriesController do
       Category.should_receive(:find_by_id).and_return(nil)
       get :show, :id => 999
       flash[:error].should == 'That category does not exist.'
-      response.should redirect_to(categories_path)
+      response.should redirect_to(admin_categories_path)
     end
     it 'should retrieve the tips from the category' do
       @category.should_receive(:tips)

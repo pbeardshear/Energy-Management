@@ -1,4 +1,5 @@
 class Admin::CategoriesController < ApplicationController
+  before_filter :authenticate_admin!
   layout 'admin'
 
   def index
@@ -9,7 +10,7 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.find_by_id(params[:id])
     if !@category
       flash[:error] = 'That category does not exist.'
-      redirect_to categories_path
+      redirect_to admin_categories_path
     else
       @category_tips = @category.tips
     end
@@ -71,5 +72,4 @@ class Admin::CategoriesController < ApplicationController
     end
   end
 
-  
 end
