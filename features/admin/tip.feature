@@ -6,7 +6,7 @@ Feature: Managing Tips
 
 Background: I am a authenticated user
             Given I am a new authenticated user
-            Given the following tips exists:
+            Given the following tips exist:
  	    | id | title      | content         |
  	    | 1  | save water | shower together |
 
