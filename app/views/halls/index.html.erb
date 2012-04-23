@@ -25,6 +25,14 @@
     <li>
       <a href="halls/8" data-ajax="false"><img src="/assets/pin.png" class="ui-li-icon ui-li-thumb" style="display:none;" />Soda Hall</a>
     </li>
+    
+    <% @halls.each do |hall| %>
+      <li>
+        <a href="halls/<%=hall.id%>" data-ajax="false"><img src="/assets/pin.png" class="ui-li-icon ui-li-thumb" style="display:none;" />
+          <%=hall.name%>
+        </a>
+      </li>
+    <% end %>
   </ul>
   
 </div>
