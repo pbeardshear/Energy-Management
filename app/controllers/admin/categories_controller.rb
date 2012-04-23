@@ -23,7 +23,7 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.create params[:category]
     if @category and @category.id
       flash[:notice] = "#{@category.name} was successfully created."
-      redirect_to edit_tips_admin_category @category 
+      redirect_to admin_categories_path 
     else
       # Category create failed, redirect back to "new" view
       flash[:error] = "Category creation failed."
@@ -45,7 +45,7 @@ class Admin::CategoriesController < ApplicationController
         redirect_to edit_admin_category_path
       else
         flash[:notice] = "#{@category.name} name was successfully updated."
-        redirect_to edit_tips_admin_category @category
+        redirect_to admin_categories_path @category
       end
     else
       # Couldn't find the category, redirect to the index page with an error
