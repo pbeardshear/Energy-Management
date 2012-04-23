@@ -33,7 +33,7 @@ Scenario: I should be able to create a tip, and see it [C]
  	  And I press "Edit"
  	  And I fill in "tip_title" with "be clean"
  	  And I press "Update Tip"
-#         Then I should see "be clean was successfully updated"
+          Then I should see "be clean was successfully updated"
  	  And I go to "/admin/tips"
  	  And I should see "be clean"
  	  And I should not see "save water"
