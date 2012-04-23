@@ -1,0 +1,10 @@
+
+<%= form_tag admin_category_path(@category), :method => 'put' do %>
+  <%= label_tag :name, 'Name' %>
+  <%= text_field :category, 'name' %>
+
+  <br />
+  <%= submit_tag 'Update Category', :class => 'btn btn-success' %>
+<% end %>
+
+ <%= button_to 'Delete Category', admin_category_path(@category), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-danger'%>
