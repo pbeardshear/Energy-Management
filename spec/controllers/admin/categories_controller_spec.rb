@@ -6,6 +6,7 @@ describe Admin::CategoriesController do
     @tip = FactoryGirl.create(:tip, { :title => 'Unplug!', :content => 'Simply unplug items that you dont use very often.' })
     @tip_category = FactoryGirl.create(:category_tip, {:tip=>@tip, :category=>@category})
     Category.stub(:find_by_id).and_return(@category)
+    controller.stub!(:authenticate_admin!)
   end
   
   describe 'access the categories index' do
