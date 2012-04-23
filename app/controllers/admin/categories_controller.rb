@@ -46,7 +46,7 @@ class Admin::CategoriesController < ApplicationController
         redirect_to edit_admin_category_path
       else
         flash[:notice] = "#{@category.name} was successfully updated."
-        redirect_to admin_categories_path @category
+        redirect_to admin_categories_path
       end
     else
       # Couldn't find the category, redirect to the index page with an error
