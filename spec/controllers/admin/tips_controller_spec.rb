@@ -13,6 +13,7 @@ describe Admin::TipsController do
     Tip.stub(:find_by_id).with(@tip2.id).and_return(@tip2)
     Category.stub(:find_by_name).with("General").and_return(@category_general)
     Category.stub(:find_by_name).with("Lab").and_return(@category_lab)
+    controller.stub!(:authenticate_admin!)
   end
 
   describe 'access the tip index' do

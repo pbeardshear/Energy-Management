@@ -1,10 +1,13 @@
 EnegeryManagement::Application.routes.draw do
 
+  devise_for :admins, :controllers => { :registrations => "registrations", :sessions => "sessions" }
+    
+
   resources :halls, :only => [:index, :show]
 
-  resources :categories, :only => [:index, :show]
-  resources :tips, :only => [:index, :show]
-      
+  resources :admin, :only => [:index]
+  resources :tips, :only => [:index]
+
   namespace :admin do
     resources :tips
     resources :categories
@@ -15,7 +18,7 @@ EnegeryManagement::Application.routes.draw do
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
+  # Keep in mind you can assign values other thna :controller and :action
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase

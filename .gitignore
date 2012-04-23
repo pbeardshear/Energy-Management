@@ -8,3 +8,4 @@ tmp/
 #*#
 *.orig
 db/schema.rb
+coverage

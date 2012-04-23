@@ -17,6 +17,7 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'selenium-webdriver', '>= 2.5.0'
+  gem 'database_cleaner'
 end
 
 group :production do
@@ -24,6 +25,7 @@ group :production do
 end
 
 gem 'jquery-rails'
+gem 'devise'
 
 group :assets do
   gem 'therubyracer'
