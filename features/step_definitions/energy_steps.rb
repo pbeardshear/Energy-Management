@@ -29,6 +29,9 @@ And /^I fill the editor with "(.*)"$/ do |content|
   page.execute_script("$('iframe').contents().find('body').html('#{content}')")
 end
 
+When /^I click on "(.*)" hall/ do |hall|
+  click_on hall
+end
 
 # Given /I am viewing "(.*)" hall/ do |hall|
 #   pending
