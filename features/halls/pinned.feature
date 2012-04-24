@@ -16,8 +16,7 @@ Scenario: Set a building as a pinned, and make sure they persist
   	  Given I pin "Soda"
 	  Then I should see "Soda" hall pinned
 	  Given I pin "Cory"
-	  Then I should see the following halls pinned: Soda, Cory
-	  #Then I should not see "Cory" within "li-pinned"
+	  Then I should see the following halls pinned: "Soda,Cory"
 	  Given I am on "/"
 	  Given I am on "/halls"
 	  Then I should see "Soda" within "css_selector_for_pinned list"
@@ -26,11 +25,11 @@ Scenario: Set a building as a pinned, and make sure they persist
 @javascript
 Scenario: Unpinning should make items not be pinned anymore
   	  Given I pin "Soda"
-  	  Given I pin "Cory"
-	  Given I unpin "Cory"
-	  Then I should see "Soda" within "css_selector_for_pinned list"
-	  Then I should not see "Cory" within "css_selector_for_pinned list"
-	  Given I am on "/"
-	  Given I am on "/halls"
-	  Then I should see "Soda" within "css_selector_for_pinned list"
-	  Then I should not see "Cory" within "css_selector_for_pinned list"
+   	  Given I pin "Cory"
+ 	  Given I unpin "Cory"
+ 	  Then I should see "Soda" within "css_selector_for_pinned list"
+ 	  Then I should not see "Cory" within "css_selector_for_pinned list"
+ 	  Given I am on "/"
+ 	  Given I am on "/halls"
+ 	  Then I should see "Soda" within "css_selector_for_pinned list"
+ 	  Then I should not see "Cory" within "css_selector_for_pinned list"

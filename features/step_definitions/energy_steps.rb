@@ -70,20 +70,28 @@ end
 #   pending
 # end
 
-Given /^I (?:un)pin "(.*)"$/ do |hall|
-  step %Q{I press Pin}
-  click_on hall
-  step %Q{I press Pin}
+Given /^I (?:un)?pin "(.*)"$/ do |hall|
+  step %Q{I follow "Pin"}
+  step %Q{I follow "#{hall}"}
+  step %Q{I follow "Pin"}
 end
 
 Then /^I should see "(.*)" hall pinned$/ do |hall|
-  lipinned = page.find("li-pinned").find(hall)
+  # page.find("li-pinned").find(hall)
+
+  # The above is not really testing much, it just test if
+  # the an element has a class, but what we really want to check
+  # should be more behavioral, for instance... the hall is in
+  # the list of pinned halls assuming that there will exist an 
+  # seperation in the future. In any case there should be a page
+  # change in which is should be able to test even if it is
+  # "I should see pinned building above of unpinned buildings"
+  pending
 end
 
 Then /^I should see the following halls pinned: "(.*)"$/ do |halls|
-  halls.split(',')
-  halls.each do |hall|
-    lipinned = page.find("li-pinned").find(hall)
+  halls.split(',').each do |hall|
+    step %Q{I should see "#{hall}" hall pinned}
   end
 end
 
