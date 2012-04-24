@@ -144,7 +144,7 @@ end
 # end
 
 Then /I should see (\d+) tips$/ do |amount|
-  page.all("div[value='open'] li").count.should == Integer(amount)
+  page.all("div li", :visible => true).count.should == Integer(amount)
 end
 
 Then /I should see the "(.*)" selector eventually$/ do |selector|
@@ -152,4 +152,3 @@ Then /I should see the "(.*)" selector eventually$/ do |selector|
     page.find selector
   end
 end
-
