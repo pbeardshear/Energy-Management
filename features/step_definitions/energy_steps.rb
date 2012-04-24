@@ -12,7 +12,7 @@ end
 
 Given /the following halls exist/ do |hall_table|
   hall_table.hashes.each do |hall|
-    Hall.new(hall).save!
+    Hall.new(hall).save
   end
 end
 
@@ -49,7 +49,8 @@ end
 # end
 
  And /I search for "(.*)" hall/ do |hall|
-    fill_in "ui-listview-filter input", :with =>hall
+  find('input').set(hall)
+  #fill_in "ui-listview-filter input", :with =>hall
  end
 
 # Then /I should see "(.*)"* hall under the pinned tab/ do |hall|
@@ -60,10 +61,17 @@ end
 #   pending
 # end
 
-# Given /the following halls are favorites: (.*)/ do |halls|
-#   #halls.split(',')
-#   pending
-# end
+Given /I pin (.*)$/ do |hall|
+  pending
+  # step %Q{I press Pin}
+  # I press the building link
+end
+
+Given /I unpin (.*)$/ do |hall|
+  pending
+  # step %Q{I press Pin}
+  # I press the building link
+end
 
 # Then /^I should see the tip for "(.*)"$/ do |hall|
 #   pending
