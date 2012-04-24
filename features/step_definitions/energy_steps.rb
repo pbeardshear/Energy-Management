@@ -46,29 +46,9 @@ When /^I click on "(.*)" hall/ do |hall|
   click_on hall
 end
 
-# Given /I am viewing "(.*)" hall/ do |hall|
-#   pending
-# end
-
-# When /I select "(.*)" from the time interval dropdown/ do |interval|
-#   pending
-# end
-
-# When /I select "(.*)" from the Operational Unit dropdown/ do |op|
-#   pending
-# end
-
- And /I search for "(.*)" hall/ do |hall|
+And /I search for "(.*)" hall/ do |hall|
     find(".ui-listview-filter input").set(hall)
  end
-
-# Then /I should see "(.*)"* hall under the pinned tab/ do |hall|
-#   pending
-# end
-
-# Then /I should not see "(.*)"* hall under the pinned tab/ do |hall|
-#   pending
-# end
 
 Given /^I (?:un)?pin "(.*)"$/ do |hall|
   step %Q{I follow "Pin"}
@@ -102,14 +82,6 @@ Then /^I should see the following halls pinned: "(.*)"$/ do |halls|
   end
 end
 
-# Then /^I should see the tip for "(.*)"$/ do |hall|
-#   pending
-# end
-
-# Then /^I should not see the tip for "(.*)"$/ do |hall|
-#   pending
-# end
-
 # Given /^I work in an office$/ do
 #   pending
 # end
@@ -123,10 +95,11 @@ end
   end
 
   Then /^I should see "(.*)" hall$/ do |hall|
-    hall_not_hidden = true
-    page.all(:css, ".ui-screen-hidden .ui-btn-inner .ui-btn-text .ui-link-inherit .hall-name").each do |elt|
+    hall_not_hidden = false
+    page.all(".hall-name", :visible => true).each do |elt|
       if elt.has_content?(hall)
-        hall_not_hidden = false
+        hall_not_hidden = true
+        break
       end
     end
     hall_not_hidden.should be_true
@@ -134,21 +107,14 @@ end
 
   Then /^I should not see "(.*)" hall$/ do |hall|
     hall_hidden = false
-    page.all(:css, ".ui-screen-hidden .ui-btn-inner .ui-btn-text .ui-link-inherit").each do |elt|
+    page.all(".hall-name", :visible => false).each do |elt|
       if elt.has_content?(hall)
         hall_hidden = true
+        break
       end
     end
     hall_hidden.should be_true
  end
-
-# Then /^I should see no halls$/ do
-#   pending
-# end
-
-# Then /I should see the usage graph for the past week/ do
-#   pending
-# end
 
 Then /I should see (\d+) tips$/ do |amount|
   page.all("div li", :visible => true).count.should == Integer(amount)
