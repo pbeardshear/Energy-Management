@@ -107,3 +107,9 @@ end
 # Then /I should see the usage graph for the past week/ do
 #   pending
 # end
+
+Then /I should see the "(.*)" selector eventually$/ do |selector|
+  wait_until do
+    page.find selector
+  end
+end
