@@ -89,16 +89,28 @@ end
 # end
 
   Then /^I should see all the halls$/ do
-    !page.has_css? ".ui-screen-hidden"
+    page.has_css?(".ui-screen-hidden").should be_false
   end
 
   Then /^I should see "(.*)" hall$/ do |hall|
-    step %Q{I should not see "#{hall}" within ".ui-screen-hidden .ui-btn-inner .ui-btn-text .ui-link-inherit"}    
+    hall_not_hidden = true
+    page.all(:css, ".ui-screen-hidden .ui-btn-inner .ui-btn-text .ui-link-inherit .hall-name").each do |elt|
+      if elt.has_content?(hall) 
+        hall_not_hidden = false
+      end
+    end
+    hall_not_hidden.should be_true
   end
 
   Then /^I should not see "(.*)" hall$/ do |hall|
-    step %Q{I should see "#{hall}" within ".ui-screen-hidden .ui-btn-inner .ui-btn-text .ui-link-inherit"}
-  end
+    hall_hidden = false
+    page.all(:css, ".ui-screen-hidden .ui-btn-inner .ui-btn-text .ui-link-inherit").each do |elt|
+      if elt.has_content?(hall)
+        hall_hidden = true
+      end
+    end
+    hall_hidden.should be_true
+ end
 
 # Then /^I should see no halls$/ do
 #   pending
