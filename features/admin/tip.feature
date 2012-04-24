@@ -19,7 +19,6 @@ Scenario: I should be able to see the tip [R]
 Scenario: I should be able to create a tip, and see it [C]
  	  Given I am on "/admin/tips/new"
  	  And I fill in "tip_title" with "greatest tip"
- 	  # And I check "categories_General"
  	  And I fill the editor with "this is a cool tip"
  	  And I press "Create Tip"
  	  Then I should be on "/admin/tips"
