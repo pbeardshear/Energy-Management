@@ -77,16 +77,22 @@
 	  if (li.hasClass('li-pinned')) {
 	    // The user is unpinning a pinned building
 	    var unpinned = $('#buildingList li:not(.li-pinned) a');
-	    for (var i = 0; i < unpinned.length; i++) {
-	      if ($(unpinned[i]).text().replace(/[^\w]/g, '') > text) {
-		// Insert ourselves here
-		$(unpinned[i]).before(li);
+	    if (unpinned.length == 0) {
+	      // Every hall is pinned, so just add to the end
+	      $('#buildingList').append(li);
+	    }
+	    else {
+	      for (var i = 0; i < unpinned.length; i++) {
+		if ($(unpinned[i]).text().replace(/[^\w]/g, '') > text) {
+		  // Insert ourselves here
+		  $(unpinned[i]).closest('li').after(li);
+		}
 	      }
 	    }
 
 	    // Remove the element from the list of pinned items
 	    for (var i = 0; i < pinnedItems.length; i++) {
-	      if (pinnedItems[i].text == text) {
+	      if (pinnedItems[i] == text) {
 		pinnedItems.splice(i, 1);
 	      }
 	    }
@@ -105,7 +111,7 @@
           }
           // Change the image icon to the pinned one
           togglePinned(li);
-          
+          console.log(pinnedItems);
           return false;
         }
         else {
