@@ -60,10 +60,17 @@ end
 #   pending
 # end
 
-# Given /the following halls are favorites: (.*)/ do |halls|
-#   #halls.split(',')
-#   pending
-# end
+Given /I pin (.*)$/ do |hall|
+  pending
+  # step %Q{I press Pin}
+  # I press the building link
+end
+
+Given /I unpin (.*)$/ do |hall|
+  pending
+  # step %Q{I press Pin}
+  # I press the building link
+end
 
 # Then /^I should see the tip for "(.*)"$/ do |hall|
 #   pending
