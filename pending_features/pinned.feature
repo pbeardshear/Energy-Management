@@ -12,10 +12,12 @@ Background:
 	And I am on "/halls"
 	
 @javascript
-Scenario: Set a building as a pinned, and make sure they presist
+Scenario: Set a building as a pinned, and make sure they persist
   	  Given I pin "Soda"
-	  Then I should see "Soda" within "css_selector_for_pinned list"
-	  Then I should not see "Cory" within "css_selector_for_pinned list"
+	  Then I should see "Soda" hall pinned
+	  Given I pin "Cory"
+	  Then I should see the following halls pinned: Soda, Cory
+	  #Then I should not see "Cory" within "li-pinned"
 	  Given I am on "/"
 	  Given I am on "/halls"
 	  Then I should see "Soda" within "css_selector_for_pinned list"
