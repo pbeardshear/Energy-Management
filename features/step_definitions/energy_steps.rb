@@ -4,6 +4,13 @@ Given /the following tips exist/ do |tip_table|
   end
 end
 
+Given /the following category_tips exist/ do |category_tips_table|
+  category_tips_table.hashes.each do |category_tip|
+    CategoryTip.new(category_tip).save
+  end
+end
+
+
 Given /the following categories exist/ do |category_table|
   category_table.hashes.each do |category|
     Category.new(category).save
@@ -128,8 +135,13 @@ end
 #   pending
 # end
 
+Then /I should see (\d+) tips$/ do |amount|
+  page.all("div[value='open'] li").count.should == Integer(amount)
+end
+
 Then /I should see the "(.*)" selector eventually$/ do |selector|
   wait_until do
     page.find selector
   end
 end
+
