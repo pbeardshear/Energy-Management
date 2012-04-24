@@ -4,6 +4,12 @@ if Hall.where(:id => 1).empty?
   GreenFeature.create(:id =>1, :name => "Flourescent Light Bulbs", :content => "This hall has low-wattage light bulbs.")
   HallFeature.create(:hall_id => 1, :green_feature_id => 1)
 end
+
+if Hall.where(:id => 2).empty?
+  Hall.create(:id => 2, :name => "Frungy Centre", :key => "9C3B13239D75E73FDE883C934FF647A1").save()
+  HallFeature.create(:hall_id => 2, :green_feature_id => 1)
+end
+
 Category_general = Category.find_by_name("General")
 Category_office = Category.find_by_name("Office")
 Category_lab = Category.find_by_name("Lab")

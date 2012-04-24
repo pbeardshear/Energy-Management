@@ -5,8 +5,14 @@ Given /the following tips exist/ do |tip_table|
 end
 
 Given /the following categories exist/ do |category_table|
-  category.table.hashes.each do |category|
+  category_table.hashes.each do |category|
     Category.new(category).save
+  end
+end
+
+Given /the following halls exist/ do |hall_table|
+  hall_table.hashes.each do |hall|
+    Hall.new(hall).save
   end
 end
 
@@ -45,9 +51,9 @@ end
 #   pending
 # end
 
-# And /I search for "(.*)" hall/ do |hall|
-#   pending
-# end
+ And /I search for "(.*)" hall/ do |hall|
+    find(".ui-listview-filter input").set(hall)
+ end
 
 # Then /I should see "(.*)"* hall under the pinned tab/ do |hall|
 #   pending
@@ -57,10 +63,17 @@ end
 #   pending
 # end
 
-# Given /the following halls are favorites: (.*)/ do |halls|
-#   #halls.split(',')
-#   pending
-# end
+Given /I pin (.*)$/ do |hall|
+  pending
+  # step %Q{I press Pin}
+  # I press the building link
+end
+
+Given /I unpin (.*)$/ do |hall|
+  pending
+  # step %Q{I press Pin}
+  # I press the building link
+end
 
 # Then /^I should see the tip for "(.*)"$/ do |hall|
 #   pending
@@ -78,15 +91,19 @@ end
 #   pending
 # end
 
-# Then /^I should see "(.*)" hall$/ do |hall|
-#   pending
-# end
+  Then /^I should see all the halls$/ do
+    !page.has_css? ".ui-screen-hidden"
+  end
 
-# Then /^I should not see "(.*)" hall$/ do |hall|
-#   pending
-# end
+  Then /^I should see "(.*)" hall$/ do |hall|
+    step %Q{I should not see "#{hall}" within ".ui-screen-hidden .ui-btn-inner .ui-btn-text .ui-link-inherit"}    
+  end
 
-# Then /^I should see no Halls$/ do
+  Then /^I should not see "(.*)" hall$/ do |hall|
+    step %Q{I should see "#{hall}" within ".ui-screen-hidden .ui-btn-inner .ui-btn-text .ui-link-inherit"}
+  end
+
+# Then /^I should see no halls$/ do
 #   pending
 # end
 

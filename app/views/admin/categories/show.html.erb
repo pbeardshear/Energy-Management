@@ -1,0 +1,33 @@
+<h3>Title</h3>
+<p><%=@category.name%></p>
+<a href="<%= edit_admin_category_path(@category) %>" id="edit-tip">
+  <button class="btn">Edit</button>
+</a>
+<br />
+<br />
+<h3>Tips in this category</h3>
+<% if @category_tips.count == 0 %>
+	<h5>No tips in this category</h5>
+<% else %>
+		<table class="table table-striped">
+		  <thead>
+			<tr>
+			  <th>Title</th>
+			  <th>Category</th>
+			  <th>Content</th>
+			</tr>
+		  </thead>
+		  <tbody>
+		  <% @category_tips.each do |tip| %>
+		  <tr>
+			<td><%= link_to tip.title, admin_tip_path(tip)%></td>
+			<td>
+			  <% tip.categories.each_index do |i|%>
+					<%= tip.categories[i].name %><% if i + 1 != tip.categories.length %>,<% end %>
+			  <% end %>
+			</td>
+			<td><%=tip.content%></td>
+		  </tr>
+		  <% end %>
+		</table>
+<% end %>

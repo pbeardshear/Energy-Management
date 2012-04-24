@@ -30,28 +30,29 @@ describe Admin::CategoriesController do
   end
   
   describe 'create a category' do
-#it 'should create a new category entry' do
-#     Category.should_receive(:create)
-#     post 'create', {:name => 'Cat2'}
-#     response.should redirect_to(:action => 'show')
-#   end
+	it 'should create a new category entry' do
+		Category.stub(:create).and_return(@category)
+		post 'create', :id => @category.id
+		response.should redirect_to(:action => 'index')
+	 end
   end
  
   describe 'update a category' do
-#   it 'should update the attributes of the selected category' do
-#     @category.should_receive(:update_attributes)
-#     post 'update', {'category_id' =>  @category.id, 'name' => 'cool sauce'}
-#     response.should redirect_to(:action => 'show')
-#   end
+    it 'should update the attributes of the selected category' do
+      @category.stub(:update_attributes).and_return(true)
+      @category.should_receive(:update_attributes)
+      post 'update', {'id' =>  @category.id, 'name' => 'cool sauce'}
+      response.should redirect_to(:action => 'index')
+    end
   end
   
   
   describe 'destroy a category' do
-#   it 'should delete the appropriate category' do
-#     @category.should_receive(:destroy)
-#     post 'delete', {'category_id' =>  @category.id}
-#     response.should redirect_to(:action => 'show')
-#   end
-  end
-  
+   it 'should delete the appropriate category' do
+      @category.stub(:destroy).and_return(true)
+      @category.should_receive(:destroy)
+      post :destroy, :id => @category.id
+      response.should redirect_to(:action => 'index')
+   end
+  end  
 end

@@ -1,0 +1,27 @@
+<a href="/admin/categories/new">
+  <button class="btn">
+    New Category
+  </button>
+</a>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th># of Tips in this Category</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @categories.each do |category| %>
+  <tr>
+    <td><%= link_to category.name, admin_category_path(category)%></td>
+    <td>1000 -- Change Me</td>
+  </tr>
+  <% end %>
+</table>
+
+<a href="/admin/category/new">
+  <button class="btn">
+    New Category
+  </button>
+</a>
