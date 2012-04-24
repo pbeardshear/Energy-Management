@@ -8,12 +8,16 @@
     <div data-role="collapsible" data-theme="b" data-content-theme="c">
       <h3 class="Category_<%= category %>"><%=category%></h3>
       <ul data-role="listview" data-theme="c" data-inset="true">
-        <% tips.each do |tip| %>
-          <li>
-            <h3><%=tip.title%></h3>
-            <p><%=tip.content%></p>
-        </li>
-        <% end %>
+	  <% @subcats = tips.group_by(&:title) %>
+  
+	  <% @subcats.each do |subcat, tips| %>
+	    <li>
+			<h3><%=subcat%></h3>	
+			<% tips.each do |tip| %>
+				<p><%=tip.content%></p>
+			<% end %>
+		</li>
+	  <% end %>
       </ul>
     </div>
   <% end %>

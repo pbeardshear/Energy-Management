@@ -17,7 +17,7 @@
     <% @halls.each do |hall| %>
       <li>
         <a href="halls/<%=hall.id%>" data-ajax="false"><img src="/assets/pin.png" class="ui-li-icon ui-li-thumb" style="display:none;" />
-          <%=hall.name%>
+          <span class="hall-name"><%=hall.name%></span>
         </a>
       </li>
     <% end %>
@@ -70,24 +70,48 @@
       
       $('#buildingList a').bind('click', function (event) {
         if (pinning) {
-          var text = $(this).text(),
+          var text = $(this).text().replace(/[^\w]/g, ''),
               li = $(this).closest('li');
           event.preventDefault();
           
-          // Move the element to the top of the list
-          // Iterate through the list of pinned items
-          for (var i = 0; i < pinnedItems.length; i++) {
-            if (pinnedItems[i] > text) {
-              break;
-            }
+	  if (li.hasClass('li-pinned')) {
+	    // The user is unpinning a pinned building
+	    var unpinned = $('#buildingList li:not(.li-pinned) a');
+	    if (unpinned.length == 0) {
+	      // Every hall is pinned, so just add to the end
+	      $('#buildingList').append(li);
+	    }
+	    else {
+	      for (var i = 0; i < unpinned.length; i++) {
+		if ($(unpinned[i]).text().replace(/[^\w]/g, '') > text) {
+		  // Insert ourselves here
+		  $(unpinned[i]).closest('li').after(li);
+		}
+	      }
+	    }
+
+	    // Remove the element from the list of pinned items
+	    for (var i = 0; i < pinnedItems.length; i++) {
+	      if (pinnedItems[i] == text) {
+		pinnedItems.splice(i, 1);
+	      }
+	    }
+	  }
+	  else {
+	    // Move the element to the top of the list
+	    // Iterate through the list of pinned items
+	    for (var i = 0; i < pinnedItems.length; i++) {
+	      if (pinnedItems[i] > text) {
+		break;
+	      }
+	    }
+	    pinnedItems.splice(i, 0, text);
+	    // Place the item at index i
+	    insertAt($('#buildingList'), i, li);
           }
-          pinnedItems.splice(i, 0, text);
-          // Place the item at index i
-          insertAt($('#buildingList'), i, li);
-          
           // Change the image icon to the pinned one
           togglePinned(li);
-          
+          console.log(pinnedItems);
           return false;
         }
         else {
@@ -97,7 +121,7 @@
       });
       
       window.onbeforeunload = function () {
-        localStorage.setItem('pinned', JSON.stringify(pinnedItems));
+        // localStorage.setItem('pinned', JSON.stringify(pinnedItems));
       };
       
       initialized = true;
