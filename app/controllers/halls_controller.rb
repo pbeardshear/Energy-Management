@@ -2,7 +2,7 @@ class HallsController < ApplicationController
   layout 'mobile'
 
   def index
-    @halls = Hall.all
+    @halls = Hall.all(:order => 'name')
   end
 
   def show

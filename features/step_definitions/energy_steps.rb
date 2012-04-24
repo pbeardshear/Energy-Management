@@ -77,16 +77,23 @@ Given /^I (?:un)?pin "(.*)"$/ do |hall|
 end
 
 Then /^I should see "(.*)" hall pinned$/ do |hall|
-  # page.find("li-pinned").find(hall)
+  # This checks if a hall is pinned by looking that it has the correct image
+  # checking if the hall has the correct class does not really test anything
+  # that the user sees
+  good = false
+  page.all("img[src='/assets/pin-in.png'] + .hall-name").each do |element|
+    if element.has_content? hall
+      good = true
+      break
+    end
+  end
+  assert good
+end
 
-  # The above is not really testing much, it just test if
-  # the an element has a class, but what we really want to check
-  # should be more behavioral, for instance... the hall is in
-  # the list of pinned halls assuming that there will exist an 
-  # seperation in the future. In any case there should be a page
-  # change in which is should be able to test even if it is
-  # "I should see pinned building above of unpinned buildings"
-  pending
+Then /^I should not see "(.*)" hall pinned$/ do |hall|
+  page.all("img[src='/assets/pin-in.png'] + .hall-name").each do |element|
+    assert false if element.has_content? hall
+  end
 end
 
 Then /^I should see the following halls pinned: "(.*)"$/ do |halls|
@@ -151,4 +158,10 @@ Then /I should see the "(.*)" selector eventually$/ do |selector|
   wait_until do
     page.find selector
   end
+end
+
+Then /^I should see "(.*)" before "(.*)"$/ do |item1, item2|
+  step %Q{I should see "#{item1}"}
+  step %Q{I should see "#{item2}"}
+  assert page.html().index(item1) < page.html().index(item2)
 end
