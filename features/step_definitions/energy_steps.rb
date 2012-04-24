@@ -12,7 +12,7 @@ end
 
 Given /the following halls exist/ do |hall_table|
   hall_table.hashes.each do |hall|
-    Hall.new(hall).save!
+    Hall.new(hall).save
   end
 end
 
@@ -49,7 +49,7 @@ end
 # end
 
  And /I search for "(.*)" hall/ do |hall|
-    fill_in "ui-listview-filter input", :with =>hall
+    find(".ui-listview-filter input").set(hall)
  end
 
 # Then /I should see "(.*)"* hall under the pinned tab/ do |hall|
@@ -81,12 +81,16 @@ end
 #   pending
 # end
 
+  Then /^I should see all the halls$/ do
+    !page.has_css? ".ui-screen-hidden"
+  end
+
   Then /^I should see "(.*)" hall$/ do |hall|
-    step %Q{I should see "#{hall}"}  
+    step %Q{I should not see "#{hall}" within ".ui-screen-hidden .ui-btn-inner .ui-btn-text .ui-link-inherit"}    
   end
 
   Then /^I should not see "(.*)" hall$/ do |hall|
-    step %Q{I should not see "#{hall}"}
+    step %Q{I should see "#{hall}" within ".ui-screen-hidden .ui-btn-inner .ui-btn-text .ui-link-inherit"}
   end
 
 # Then /^I should see no halls$/ do
