@@ -35,6 +35,9 @@ And /^I fill the editor with "(.*)"$/ do |content|
   page.execute_script("$('iframe').contents().find('body').html('#{content}')")
 end
 
+When /^I click on "(.*)" hall/ do |hall|
+  click_on hall
+end
 
 # Given /I am viewing "(.*)" hall/ do |hall|
 #   pending
@@ -60,16 +63,21 @@ end
 #   pending
 # end
 
-Given /I pin (.*)$/ do |hall|
-  pending
-  # step %Q{I press Pin}
-  # I press the building link
+Given /^I (?:un)pin "(.*)"$/ do |hall|
+  step %Q{I press Pin}
+  click_on hall
+  step %Q{I press Pin}
 end
 
-Given /I unpin (.*)$/ do |hall|
-  pending
-  # step %Q{I press Pin}
-  # I press the building link
+Then /^I should see "(.*)" hall pinned$/ do |hall|
+  lipinned = page.find("li-pinned").find(hall)
+end
+
+Then /^I should see the following halls pinned: "(.*)"$/ do |halls|
+  halls.split(',')
+  halls.each do |hall|
+    lipinned = page.find("li-pinned").find(hall)
+  end
 end
 
 # Then /^I should see the tip for "(.*)"$/ do |hall|
@@ -89,16 +97,28 @@ end
 # end
 
   Then /^I should see all the halls$/ do
-    !page.has_css? ".ui-screen-hidden"
+    page.has_css?(".ui-screen-hidden").should be_false
   end
 
   Then /^I should see "(.*)" hall$/ do |hall|
-    step %Q{I should not see "#{hall}" within ".ui-screen-hidden .ui-btn-inner .ui-btn-text .ui-link-inherit"}    
+    hall_not_hidden = true
+    page.all(:css, ".ui-screen-hidden .ui-btn-inner .ui-btn-text .ui-link-inherit .hall-name").each do |elt|
+      if elt.has_content?(hall)
+        hall_not_hidden = false
+      end
+    end
+    hall_not_hidden.should be_true
   end
 
   Then /^I should not see "(.*)" hall$/ do |hall|
-    step %Q{I should see "#{hall}" within ".ui-screen-hidden .ui-btn-inner .ui-btn-text .ui-link-inherit"}
-  end
+    hall_hidden = false
+    page.all(:css, ".ui-screen-hidden .ui-btn-inner .ui-btn-text .ui-link-inherit").each do |elt|
+      if elt.has_content?(hall)
+        hall_hidden = true
+      end
+    end
+    hall_hidden.should be_true
+ end
 
 # Then /^I should see no halls$/ do
 #   pending

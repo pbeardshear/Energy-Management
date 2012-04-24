@@ -28,7 +28,7 @@ class Admin::CategoriesController < ApplicationController
     else
       # Category create failed, redirect back to "new" view
       flash[:error] = "Category creation failed."
-      redirect_to new_admin_categories_path
+      redirect_to new_admin_category_path
     end
   end
 
@@ -42,7 +42,7 @@ class Admin::CategoriesController < ApplicationController
     if @category
       valid_update = @category.update_attributes params[:category]
       if !valid_update
-        flash[:error] = "Couldn't update #{@category.name}"
+        flash[:error] = "Couldn't update #{@category.name}."
         redirect_to edit_admin_category_path
       else
         flash[:notice] = "#{@category.name} was successfully updated."
@@ -61,7 +61,6 @@ class Admin::CategoriesController < ApplicationController
       # Fetch the current tips under this category for display
       @all_tips = Tip.all
       @tips = CategoryTip.find_all_by_category_id(params[:id])
-      redirect_to update_tips_admin_category @category
     else
       # Couldn't find the category, redirect to the index page with an error
       flash[:error] = "That category does not exist."
@@ -80,7 +79,7 @@ class Admin::CategoriesController < ApplicationController
           CategoryTip.create :tip_id => id, :category_id => @category.id
         end
       end
-      flash[:notice] = "#{@category.name} tips was successfully updated."
+      flash[:notice] = "#{@category.name} tips successfully updated."
       redirect_to admin_category_path @category
     else
       # Couldn't find the category, redirect to the index page with an error
@@ -100,8 +99,8 @@ class Admin::CategoriesController < ApplicationController
         redirect_to edit_admin_category_path
       end
     else
-      # tip was not found
-      flash[:error] = "That tip does not exist."
+      # category was not found
+      flash[:error] = "That category does not exist."
       redirect_to admin_categories_path
     end
   end
