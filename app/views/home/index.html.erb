@@ -1,0 +1,42 @@
+
+  <style type="text/css">
+    #logo {
+      padding: 5px 0px;
+      background: rgb(64,71,143); /* Old browsers */
+      background: -moz-linear-gradient(top, rgba(64,71,143,1) 1%, rgba(34,37,82,1) 50%, rgba(22,26,61,1) 51%, rgba(21,25,60,1) 100%); /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,rgba(64,71,143,1)), color-stop(50%,rgba(34,37,82,1)), color-stop(51%,rgba(22,26,61,1)), color-stop(100%,rgba(21,25,60,1))); /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top, rgba(64,71,143,1) 1%,rgba(34,37,82,1) 50%,rgba(22,26,61,1) 51%,rgba(21,25,60,1) 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top, rgba(64,71,143,1) 1%,rgba(34,37,82,1) 50%,rgba(22,26,61,1) 51%,rgba(21,25,60,1) 100%); /* Opera 11.10+ */
+      background: -ms-linear-gradient(top, rgba(64,71,143,1) 1%,rgba(34,37,82,1) 50%,rgba(22,26,61,1) 51%,rgba(21,25,60,1) 100%); /* IE10+ */
+      background: linear-gradient(top, rgba(64,71,143,1) 1%,rgba(34,37,82,1) 50%,rgba(22,26,61,1) 51%,rgba(21,25,60,1) 100%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#40478f', endColorstr='#15193c',GradientType=0 ); /* IE6-9 */
+    }
+    
+    #energyTip { text-align: middle; font-size: 14px; }
+    #energyTip .ui-collapsible-content { padding: 10px; }
+    #energyTip h4 { color: #9fa617; }
+    .ui-header, .ui-title, .ui-footer { text-overflow: inherit !important; margin-left: 0 !important; margin-right: 0 !important; }
+    h4 { margin: 10px 0px; }
+  </style>
+
+  <div id="logo" align="center">
+    <img src="/assets/myPower-logo2.png" height="70px" id="mypower" />
+  </div>
+  <div data-role="content">
+    <div class="container">
+	  <div class="content" align="center">
+	    
+	    <div data-role="collapsible" data-theme="c" data-content-theme="c" id="energyTip">
+	      <h3>Energy Tip of the Day</h3>
+        <p><h4><%= @tip_of_the_day.title %></h4><%= @tip_of_the_day.content %></p>
+	    </div>
+	    
+	    <ul data-role="listview" data-theme="c" data-inset="true">
+	      <li><a href="/halls">Buildings</a></li>
+        <li><a href="/tips">Tips</a></li>
+        <li><a href="/settings">Settings</a></li>
+	    </ul>
+	  </div>
+  </div> 
+  </div>  
+

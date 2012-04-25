@@ -1,7 +1,6 @@
 EnegeryManagement::Application.routes.draw do
 
-  devise_for :admins, :controllers => { :registrations => "registrations", :sessions => "sessions" }
-    
+  devise_for :admins, :controllers => { :registrations => "registrations", :sessions => "sessions" }    
 
   resources :halls, :only => [:index, :show]
 
@@ -17,6 +16,9 @@ EnegeryManagement::Application.routes.draw do
       end
     end
   end
+  
+  # default
+  root :to => 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
