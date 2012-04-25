@@ -28,4 +28,9 @@ FactoryGirl.define do
     category
   end
 
+  factory :admin do
+    email 'some email'
+    password 'some password'
+  end
+
 end

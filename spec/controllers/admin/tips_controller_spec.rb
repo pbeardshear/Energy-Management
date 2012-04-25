@@ -49,6 +49,13 @@ describe Admin::TipsController do
     end
   end
 
+  describe 'visiting the new page for a tip' do
+    it 'should retrive all tips' do
+      Category.should_receive(:all)
+      get :new
+    end
+  end
+
   describe 'create a new tip' do
     before :each do
       @tip_params = { :title => 'Unplug!', :content => "Simply unplug items that you don't use very often." }
