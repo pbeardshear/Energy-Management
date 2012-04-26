@@ -23,11 +23,11 @@ Scenario: Buildings are in alphabetal order to start with, but pinned buildings 
 	  Given I am on "/"
 	  Given I am on "/halls"
  	  Then I should see "Soda" before "Cory"
- 	  And I should see "Soda" before "Krober"	  
+    And I should see "Soda" before "Krober"
 	
 @javascript
 Scenario: Set a building as a pinned, and make sure they persist
-  	  Given I pin "Soda"
+	  Given I pin "Soda"
 	  Then I should see "Soda" hall pinned
 	  Then I should not see "Cory" hall pinned
 
@@ -38,8 +38,8 @@ Scenario: Set a building as a pinned, and make sure they persist
 
 @javascript
 Scenario: Unpinning should make items not be pinned anymore
-  	  Given I pin "Soda"
-   	  Given I pin "Cory"
+	  Given I pin "Soda"
+ 	  Given I pin "Cory"
  	  Given I unpin "Cory"
  	  Then I should see "Soda" hall pinned
  	  Then I should not see "Cory" hall pinned
@@ -48,3 +48,4 @@ Scenario: Unpinning should make items not be pinned anymore
  	  Given I am on "/halls"
  	  Then I should see "Soda" hall pinned
  	  Then I should not see "Cory" hall pinned
+ 	  

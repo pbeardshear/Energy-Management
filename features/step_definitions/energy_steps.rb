@@ -50,10 +50,16 @@ And /I search for "(.*)" hall/ do |hall|
     find(".ui-listview-filter input").set(hall)
  end
 
-Given /^I (?:un)?pin "(.*)"$/ do |hall|
-  step %Q{I follow "Pin"}
-  step %Q{I follow "#{hall}"}
-  step %Q{I follow "Pin"}
+Given /^I (un)?pin "(.*)"$/ do |unpin, hall|
+  if (unpin and page.has_css?('li.li-pinned', :text => hall)) or (!unpin and page.has_no_css?('li.li-pinned', :text => hall))
+    step %Q{I follow "Pin"}
+    step %Q{I follow "#{hall}"}
+    step %Q{I follow "Pin"}
+  end
+end
+
+When /^I expand the tip container$/ do
+  click_on "Energy Tip of the Day"
 end
 
 Then /^I should see "(.*)" hall pinned$/ do |hall|
@@ -131,3 +137,10 @@ Then /^I should see "(.*)" before "(.*)"$/ do |item1, item2|
   step %Q{I should see "#{item2}"}
   assert page.html().index(item1) < page.html().index(item2)
 end
+
+Then /^I should see one of the tips of the day$/ do
+  tip = page.find('#energyTip .ui-collapsible-content', :visible => true)
+  assert tip
+end
+
+
