@@ -6,8 +6,14 @@ if Hall.where(:id => 1).empty?
 end
 
 if Hall.where(:id => 2).empty?
-  Hall.create(:id => 2, :name => "Frungy Centre", :key => "9C3B13239D75E73FDE883C934FF647A1").save()
+  Hall.create(:id => 2, :name => "Frungy Centre", :key => "6MwduHG8B4JkuCejC0sCeg%3D%3D").save
   HallFeature.create(:hall_id => 2, :green_feature_id => 1)
+end
+
+
+if Hall.where(:id => 3).empty?
+  Hall.create(:id => 3, :name => "Pik Tower", :key => "xE2OB0othPxoMOeq8gGehQ%3D%3D").save
+  HallFeature.create(:hall_id => 3, :green_feature_id => 1)
 end
 
 Category_general = Category.find_by_name("General")
