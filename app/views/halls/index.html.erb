@@ -70,7 +70,7 @@
       
       $('#buildingList a').bind('click', function (event) {
         if (pinning) {
-          var text = $(this).text().replace(/[^\w]/g, ''),
+          var text = $(this).text().trim(),
               li = $(this).closest('li');
           event.preventDefault();
           
@@ -83,7 +83,7 @@
 	    }
 	    else {
 	      for (var i = 0; i < unpinned.length; i++) {
-		if ($(unpinned[i]).text().replace(/[^\w]/g, '') > text) {
+		if ($(unpinned[i]).text().trim() > text) {
 		  // Insert ourselves here
 		  $(unpinned[i]).closest('li').after(li);
 		}
@@ -121,7 +121,7 @@
       });
       
       window.onbeforeunload = function () {
-        // localStorage.setItem('pinned', JSON.stringify(pinnedItems));
+        localStorage.setItem('pinned', JSON.stringify(pinnedItems));
       };
       
       initialized = true;
@@ -131,50 +131,4 @@
   
 </script>
 
-
-<!-- Handle pin button click -->
-<script type="text/javascript">
-  /*
-  var initialized = false,
-      pinning = false;
-  $(document).bind('pageinit', function () {
-    // Necessary, because jQuery Mobile fires 'pageinit' twice
-    if (!initialized) {
-      $('#pinBuildings').bind('click', function (e) {
-        // Apply a data-icon to each of the list items
-        $('#buildingList img').toggle();
-        pinned = !pinned;
-      });
-      
-      $('.ui-listview .ui-li a').bind('click', function (e) {
-        if (pinning) {
-          e.preventDefault();
-          var pinnedList = $('#pinnedList'),
-              counter = $('#pinnedList .ui-li-count'),
-              newItem = $(this).closest('li').clone();
-          // Add this list item to the pinned section
-          // If there are no pinned items, we will need to show the section
-          if (!pinnedList.is(':visible')) {
-            pinnedList.show();
-          }
-          // Change the pin image of the new item
-          newItem.find('img').attr('src', '/assets/pin-in.png');
-          
-          pinnedList.append(newItem);
-          // Increment the list counter
-          counter.text((parseInt(counter.text()) || 0) + 1);
-          
-          return false;
-        }
-        else {
-          // User is just navigating
-          return true;
-        }
-      });
-      
-      initialized = true;
-    }
-  });
-  */
-</script>
 
