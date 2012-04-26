@@ -16,10 +16,13 @@ class Tip < ActiveRecord::Base
     @categories
   end
 
+  def self.general_tips
+    self.tips_by_categories["General"]
+  end
+
   def self.tip_of_the_day
-    general_tips = self.tips_by_categories["General"]
     # Convert the date into an integer
-    index = Time.now.yday % general_tips.length
-    general_tips[index]
+    index = Time.now.yday % self.general_tips.length
+    self.general_tips[index]
   end
 end

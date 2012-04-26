@@ -11,17 +11,7 @@ describe Tip do
       FactoryGirl.create(:tip).should be_valid
     end
   end
-      def set_title(newtitle)
-      @tip.title = newtitle
-    end
-    
-    def set_content(newcontent)
-      @tip.content = newcontent
-    end
-    
-    def set_category(category)
-      @tip.category_id = category.id
-    end
+
   describe 'With a tip' do
     
     describe 'we can update the title' do
@@ -81,5 +71,39 @@ describe Tip do
   
 
     
+  end
+end
+
+
+describe Tip do
+  describe 'tip of the day is correct' do
+    before :each do
+      @general_category = FactoryGirl.create(:category, { :name => 'General' })
+      @lab_category = FactoryGirl.create(:category, { :name => 'Lab' })
+      @tip = FactoryGirl.create(:tip, { :title => 'This is a tip', :content => 'Turn off all the things!', :categories => [@general_category] })
+      @other_tip = FactoryGirl.create(:tip, { :title => 'Problem solved!', :content => 'Drop an ice cube in the ocean every now and then', :categories => [@general_category] })
+      @lab_tip = FactoryGirl.create(:tip, { :title => 'Boom!', :content => 'I know . . . we\'ll use science!', :categories => [@lab_category] })
+      Tip.stub(:all).and_return([@tip, @other_tip, @lab_tip])
+    end
+    
+    describe 'getting the tip for today' do
+      it 'should get the correct tip for today' do
+        index = Time.new.yday % 2
+        Tip.should_receive(:all)
+        Tip.tip_of_the_day.should == (index == 0 ? @tip : @other_tip)
+      end
+      
+      it 'should ignore any tips not in the general category' do
+        Tip.general_tips.length.should == 2
+      end
+      
+      it 'should include tips which have more than one category' do
+        @multi_tip = FactoryGirl.create(:tip, { :title => 'Protip', :content => 'Your argument is invalid.', :categories => [@general_category, @lab_category] })      
+        Tip.stub(:all).and_return([@tip, @other_tip, @lab_tip, @multi_tip])
+        tips = [@tip, @other_tip, @multi_tip]        
+        index = Time.new.yday % 3
+        Tip.tip_of_the_day.should == tips[index]
+      end
+    end
   end
 end
