@@ -4,6 +4,7 @@ class Admin::CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
+    @tips_by_categories = Tip.tips_by_categories
   end
   
   def show

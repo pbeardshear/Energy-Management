@@ -2,6 +2,9 @@ require 'simplecov'
 SimpleCov.start do
   add_filter "/spec"
   add_filter "/feature"
+  add_filter "/lib"
+  add_filter "/config"
+  add_filter "/db"
 end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'

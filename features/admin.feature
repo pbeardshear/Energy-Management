@@ -30,3 +30,5 @@ Scenario: I shld be redirected to sign in if an admin exists, and logout works
 	  Then I should be on "/admins/sign_in"
 	  When I go to "/admin/categories"
 	  Then I should be on "/admins/sign_in"
+	  When I go to "/admins/sign_up"
+	  Then I should be on "/admins/sign_in"

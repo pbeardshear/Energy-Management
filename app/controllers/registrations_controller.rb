@@ -1,4 +1,6 @@
-class RegistrationsController < Devise::RegistrationsController
+class RegistrationsController < ::Devise::RegistrationsController
+  layout 'admin'
+
   def new
     if Admin.find(:all).size == 0
       super

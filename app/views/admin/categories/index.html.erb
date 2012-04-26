@@ -14,8 +14,8 @@
   <tbody>
   <% @categories.each do |category| %>
   <tr>
-    <td><%= link_to category.name, admin_category_path(category)%></td>
-    <td>1000 -- Change Me</td>
+    <td><%= link_to category.name, admin_category_path(category) %></td>
+    <td><%= @tips_by_categories[category.name] ? @tips_by_categories[category.name].count : 0 %></td>
   </tr>
   <% end %>
 </table>

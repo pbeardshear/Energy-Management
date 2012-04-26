@@ -46,3 +46,9 @@ Scenario: I should be able to delete tips [D]
  	  And I press "Delete Tip"
  	  Then I should see "'save water' deleted"
 	  Then I should not see "shower together"
+
+Scenario: Going to Tip that does not exist
+	  When I go to "/admin/tips/100"
+	  Then I should be on "/admin/tips"
+	  And I should see "That tip does not exist."
+	  
