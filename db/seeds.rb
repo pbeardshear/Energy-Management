@@ -16,6 +16,10 @@ if Hall.where(:id => 3).empty?
   HallFeature.create(:hall_id => 3, :green_feature_id => 1)
 end
 
+if Hall.where(:id => 4).empty?
+  Hall.create(:id => 4, :name => "Soda Hall").save
+end
+
 Category_general = Category.find_by_name("General")
 Category_office = Category.find_by_name("Office")
 Category_lab = Category.find_by_name("Lab")
