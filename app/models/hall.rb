@@ -9,7 +9,7 @@ class Hall < ActiveRecord::Base
       "http://my.pulseenergy.com/embed/?key=#{self.key}&width=#{width}&height=#{height}&interval=#{interval}"
     else
       host = "localhost:3000"
-      "http://#{host}/embeds/?#{self.name}&width=#{width}&height=#{height}&interval=#{interval}"
+      "http://#{host}/embeds/?hall=#{self.name}&width=#{width}&height=#{height}&interval=#{interval}"
     end
   end
 end
