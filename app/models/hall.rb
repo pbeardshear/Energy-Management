@@ -18,19 +18,17 @@ class Hall < ActiveRecord::Base
   end
 
   def get_data
-    # gets graph data of the given hall
-    params = { "Metadata/Instrument/Manufacturer" => "UC Berkeley",
-                "Metadata/Location/Building" => self.name }
-    base = "http://new.openbms.org/backend/api/prev/"
-    path = Hall.construct_path(params)
-    Net::HTTP.get(URI(base + path))
+    # This will become deprecated, once we move the
+    # ajax call to client side
+    url = self.get_data_url
+    Net::HTTP.get(URI(url))
   end
 
-  def self.construct_path params
-    result = params.map do |key, value|
-      key.gsub('/','__') + '/' + value.gsub(' ','%20')  
-    end
-    result.join('/')
+  def get_data_url
+    base = "http://new.openbms.org/backend/api/prev"
+    name = self.name.gsub(' ', '%20')
+    "#{base}/Metadata__Location__Building/#{name}"
   end
+    
 end
 

@@ -16,7 +16,7 @@
     
     <% @halls.each do |hall| %>
       <li>
-        <a href="halls/<%=hall.id%>" data-ajax="false"><img src="/assets/pin.png" class="ui-li-icon ui-li-thumb" style="display:none;" />
+        <a href="/halls/<%=hall.id%>" data-ajax="false"><img src="/assets/pin.png" class="ui-li-icon ui-li-thumb" style="display:none;" />
           <span class="hall-name"><%=hall.name%></span>
         </a>
       </li>

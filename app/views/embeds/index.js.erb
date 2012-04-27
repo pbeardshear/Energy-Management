@@ -1,3 +1,11 @@
-(function(hall, width, height, interval){
+(function(width, height, interval){
+    
+    // This fails with a parse error for some reason
+    // $.ajax("<%= @data_url %>",
+    //	    { crossDomain : true, dataType : 'jsonp'})
+    //	.success(function(data){ console.log(data) })
+    //	.fail( function(_, textError){ throw textError });
+
+    // use this temporarily
     console.log( <%=raw @data %> );
-})( "<%= @hall.name %>", <%= @width %>, <%= @height %>, "<%= @interval %>" );
+})( <%= @width %>, <%= @height %>, "<%= @interval %>" );
