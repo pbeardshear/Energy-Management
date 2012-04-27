@@ -1,9 +1,10 @@
 class EmbedsController < ApplicationController
   def index
-    @hall = params[:hall]
+    @hall = Hall.find(params[:hall_id])
     @width = params[:width]
     @height = params[:height]
     @interval = params[:interval]
+    @data = @hall.get_data
     respond_to do |format|
       format.js { render :layout => false }
     end
