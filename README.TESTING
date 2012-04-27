@@ -2,8 +2,8 @@
     rake db:migrate
     rake db:seed
 
-2. Start the server in the test environment
-    rails server
-
-3. Now you can run the spec
+2. Run Rspec
     rake spec
+    
+3. Run Cucumber
+    rake cucumber
