@@ -78,3 +78,34 @@
   #intervalControls ul { margin: 5px auto; width: 266px; }
 </style>
 
+<!-- Uncomment this block when we start using highcharts -->
+<!--
+<script type="text/javascript" src="highcharts.js"></script>
+<script type="text/javascript">
+  // Create the graph
+  var chart;
+  $(document).ready(function () {
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: '#graphContainer',   // The element to render the chart into
+        type: 'line'    // Type of graph to draw  
+      },
+      title: {
+        text: 'Hall Name Here'   // TODO: Replace with hall name
+      },
+      xAxis: {
+        type: 'datetime'    // Tells highcharts to interpolate the data using the date
+      },
+      yAxis: {
+        text: 'Electricity'
+      },
+      series: []    // Array of data points to render
+                    // Because we are using datetime, each point should be an array of the form:
+                    // [timestamp, yValue], where timestamp is in UTC format
+    });
+  });
+</script>
+-->
+<!-- End Block -->
+
+
