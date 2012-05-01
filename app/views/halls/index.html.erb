@@ -4,7 +4,7 @@
 
 <div data-role="header" data-position="fixed" data-theme="b">
   <h1>Buildings</h1>
-  <a href="#" id="pinBuildings" class="ui-btn-right">&nbsp;Pin&nbsp;</a>
+  <a href="/overlay/pinOverlay.html" id="pinBuildings" class="ui-btn-right" data-rel="dialog" data-transition="pop">&nbsp;Pin&nbsp;</a>
 </div>
 
 <div data-role="content">
@@ -38,11 +38,13 @@
   function togglePinned(el) {
     var img = $(el).find('img');
     if (el.hasClass('li-pinned')) {
-      img.attr('src', '/assets/pin.png');
+      // Unpinning
+      img.hide();
       $(el).removeClass('li-pinned');
     }
     else {
-      img.attr('src', '/assets/pin-in.png');
+      // Pinning
+      img.attr('src', '/assets/pin.png');
       $(el).addClass('li-pinned');
       img.show();
     }
@@ -62,14 +64,16 @@
       
       $('#pinBuildings').bind('click', function (event) {
         
-        // Show the pin icon
-        $('#buildingList li:not(.li-pinned) img').toggle();
         // Toggle the arrow navigation buttons
         $('#buildingList li .ui-icon-arrow-r').toggle();
         pinning = !pinning;
         // Toggle the pin button text between pin and end
         $('#pinBuildings .ui-btn-text').text(pinning ? 'End' : 'Pin');
-
+        
+        if (!pinning || localStorage.getItem('hidePinPopup')) {
+          // This will prevent the dialog from popping up
+          return false;
+        }
       });
       
       $('#buildingList a').bind('click', function (event) {
@@ -87,17 +91,17 @@
 	    }
 	    else {
 	      for (var i = 0; i < unpinned.length; i++) {
-		if ($(unpinned[i]).text().trim() > text) {
-		  // Insert ourselves here
-		  $(unpinned[i]).closest('li').after(li);
-		}
+		      if ($(unpinned[i]).text().trim() > text) {
+		        // Insert ourselves here
+		        $(unpinned[i]).closest('li').after(li);
+		      }
 	      }
 	    }
 
 	    // Remove the element from the list of pinned items
 	    for (var i = 0; i < pinnedItems.length; i++) {
 	      if (pinnedItems[i] == text) {
-		pinnedItems.splice(i, 1);
+      		pinnedItems.splice(i, 1);
 	      }
 	    }
 	  }
@@ -106,7 +110,7 @@
 	    // Iterate through the list of pinned items
 	    for (var i = 0; i < pinnedItems.length; i++) {
 	      if (pinnedItems[i] > text) {
-		break;
+      		break;
 	      }
 	    }
 	    pinnedItems.splice(i, 0, text);
