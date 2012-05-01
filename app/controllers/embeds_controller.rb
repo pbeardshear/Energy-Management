@@ -4,10 +4,7 @@ class EmbedsController < ApplicationController
     @width = params[:width]
     @height = params[:height]
     @interval = params[:interval]
-    @data_url = hall.get_data_url
-
-    # This will be removed in the near future
-    @data = hall.get_data
+    @data = hall.get_data @interval
 
     respond_to do |format|
       format.js { render :layout => false }
