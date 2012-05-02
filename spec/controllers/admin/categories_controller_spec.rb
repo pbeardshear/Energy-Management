@@ -67,18 +67,18 @@ describe Admin::CategoriesController do
   describe 'update a category' do
     it 'should update the attributes of the selected category' do
       @category.should_receive(:update_attributes).and_return(true)
-      post :update, {'id' =>  @category.id, 'name' => 'cool sauce'}
-      response.should redirect_to(admin_categories_path)
+      put :update, {'id' =>  @category.id, 'name' => 'cool sauce'}
+      response.should redirect_to(edit_tips_admin_category_path)
     end
     it 'should show an error message and redirect if category creation failed' do
       @category.stub(:update_attributes).and_return(false)
-      post :update, {'id' => @category.id, 'name' => 'hot sauce'}
+      put :update, {'id' => @category.id, 'name' => 'hot sauce'}
       flash[:error].should == "Couldn't update #{@category.name}."
       response.should redirect_to(edit_admin_category_path)
     end
     it 'should show an error message and redirect if category not found' do
       Category.stub(:find_by_id).and_return(nil)
-      post :update, {'id' => 666, 'name' => 'really hot sauce'}
+      put :update, {'id' => 666, 'name' => 'really hot sauce'}
       flash[:error].should == "That category does not exist."
       response.should redirect_to(admin_categories_path)
     end
@@ -133,8 +133,8 @@ describe Admin::CategoriesController do
     end
     it 'should delete all the old tips with this category id and add tips selected by admin' do
       CategoryTip.should_receive(:destroy_all).with(:category_id=>@category.id)
-      CategoryTip.should_receive(:create).with(:tip_id=>"#{@tip_shower.id}", :category_id=>@category.id)
-      CategoryTip.should_receive(:create).with(:tip_id=>"#{@tip.id}", :category_id=>@category.id)
+      CategoryTip.should_receive(:create).with(:tip_id=>@tip_shower.id, :category_id=>@category.id)
+      CategoryTip.should_receive(:create).with(:tip_id=>@tip.id, :category_id=>@category.id)
       post :update_tips, :id => @category.id, :tips => [@tip_shower.id, @tip.id]
     end
     it 'should set a notice message and redirect upon success' do

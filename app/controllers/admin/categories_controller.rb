@@ -47,7 +47,7 @@ class Admin::CategoriesController < ApplicationController
         redirect_to edit_admin_category_path
       else
         flash[:notice] = "#{@category.name} was successfully updated."
-        redirect_to admin_categories_path
+        redirect_to edit_tips_admin_category_path @category
       end
     else
       # Couldn't find the category, redirect to the index page with an error
@@ -76,8 +76,8 @@ class Admin::CategoriesController < ApplicationController
         # Remove all tips with this category's id.
         CategoryTip.destroy_all :category_id => @category.id
         # Create a new CategoryTip entry for each checked tip
-        params[:tips].each do |id|
-          CategoryTip.create :tip_id => id, :category_id => @category.id
+        params[:tips].each do |tip|
+          CategoryTip.create :tip_id => tip[0].to_i, :category_id => @category.id
         end
       end
       flash[:notice] = "#{@category.name} tips successfully updated."
