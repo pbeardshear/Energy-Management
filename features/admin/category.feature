@@ -46,3 +46,22 @@ Scenario: I should be able to delete categories [D]
  	  And I press "Delete Category"
  	  Then I should see "Category 'general' deleted"
 	  Then I should not see "general" within "table"
+
+@javascript
+Scenario: I should be able to change, which tips belong to this category [U]
+            Given the following tips exist:
+ 	    | id | title      | content         |
+ 	    | 1  | save water | shower together |
+
+            Given the following categories exists:
+ 	    | id | name     |
+ 	    | 2  | dorms    |
+
+            Given I am on "/admin/categories"
+            When I follow "dorms"
+            Then I should not see "save water"
+            And I press "Edit"
+            And I press "Update Category"
+            And I check "save water"
+            And I press "Update tips for this category"
+            Then I should see "save water"
