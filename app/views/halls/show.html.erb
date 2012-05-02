@@ -3,7 +3,7 @@
     <!-- Begin header -->
     <div data-role="header" class="ui-bar-b" data-position="fixed">
       <a href="/halls" data-rel="back">Back</a>
-      <h1><%= @hall.name %> Hall</h1>
+      <h1><%= @hall.name %></h1>
     </div>
     
     <!-- End header -->
@@ -36,13 +36,17 @@
     <!-- Begin header -->
     <div data-role="header" class="ui-bar-b" data-position="fixed">
       <a href="/halls" data-rel="back">Back</a>
-      <h1><%= @hall.name %> Hall</h1>
+      <h1><%= @hall.name %></h1>
     </div>
     <!-- End header -->
 
-    <ul>
+    <ul data-role="listview" data-theme="c" data-inset="true" id="green-features">
       <% @green_features.each do |feature| %>
-	<li>Name: <%=feature.name%>, Description: <%=feature.content%></li>
+      	<li>
+      	  <img src="/assets/green features/<%=feature.name%>.png" />
+      	  <h3><%=feature.full_name%></h3>
+      	  <p><%=feature.content%><p>
+    	  </li>
       <% end %>
     </ul>
     
@@ -66,7 +70,8 @@
   .ui-icon { height: 30px !important; width: 30px !important; margin-left: -15px !important; box-shadow: none !important; border-radius: 0 !important; }
   .ui-icon-graph { background: url('/assets/graph.png') no-repeat 0px 0px !important; background-size: 28px 20px; }
   .ui-icon-feature { background: url('/assets/green_feature.png') no-repeat 0px 0px !important; background-size: 12px 20px; }
-
+  #green-features .ui-li-desc { overflow: visible; white-space: normal; }
+  
   .localnav { margin-top: 15px; }
   .localnav li { float: left; }
 
@@ -77,4 +82,35 @@
   #intervalControls { width: 315px; }
   #intervalControls ul { margin: 5px auto; width: 266px; }
 </style>
+
+<!-- Uncomment this block when we start using highcharts -->
+<!--
+<script type="text/javascript" src="highcharts.js"></script>
+<script type="text/javascript">
+  // Create the graph
+  var chart;
+  $(document).ready(function () {
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: '#graphContainer',   // The element to render the chart into
+        type: 'line'    // Type of graph to draw  
+      },
+      title: {
+        text: 'Hall Name Here'   // TODO: Replace with hall name
+      },
+      xAxis: {
+        type: 'datetime'    // Tells highcharts to interpolate the data using the date
+      },
+      yAxis: {
+        text: 'Electricity'
+      },
+      series: []    // Array of data points to render
+                    // Because we are using datetime, each point should be an array of the form:
+                    // [timestamp, yValue], where timestamp is in UTC format
+    });
+  });
+</script>
+-->
+<!-- End Block -->
+
 
