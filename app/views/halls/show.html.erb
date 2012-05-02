@@ -78,39 +78,59 @@
   #content { padding: 25px; }
   .content-page { margin: 0 auto; }
 
-  #graphContainer { width: 315px; overflow: hidden; }
-  #intervalControls { width: 315px; }
+  #graphContainer { overflow: hidden; }
+  #intervalControls { width: 315px; height: 45px; text-align: center; margin: 0 auto;}
   #intervalControls ul { margin: 5px auto; width: 266px; }
 </style>
 
 <!-- Uncomment this block when we start using highcharts -->
-<!--
-<script type="text/javascript" src="highcharts.js"></script>
+
+<script type="text/javascript" src="/assets/highcharts.js"></script>
 <script type="text/javascript">
   // Create the graph
   var chart;
   $(document).ready(function () {
     chart = new Highcharts.Chart({
       chart: {
-        renderTo: '#graphContainer',   // The element to render the chart into
-        type: 'line'    // Type of graph to draw  
+        renderTo: 'graphContainer',   // The element to render the chart into
+        type: 'area',
+        zoomType: 'x'
       },
       title: {
-        text: 'Hall Name Here'   // TODO: Replace with hall name
+        text: '<%= @hall.name %>'
       },
       xAxis: {
         type: 'datetime'    // Tells highcharts to interpolate the data using the date
       },
       yAxis: {
-        text: 'Electricity'
+        title: {
+          text: 'Electricity (kW)'
+        }
       },
-      series: []    // Array of data points to render
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        area: {
+          marker: {
+            enabled: false
+          },
+          fillColor: {
+            linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+            stops: [
+              [0, Highcharts.getOptions().colors[0]],
+              [1, 'rgba(2, 0, 0, 0)']
+            ]
+          },
+          lineWidth: 1
+        }
+      },
+      series: [{ 
+        name: 'kW',
+        data: (<%=raw @data %>)[0].Readings }]    // Array of data points to render
                     // Because we are using datetime, each point should be an array of the form:
                     // [timestamp, yValue], where timestamp is in UTC format
     });
   });
 </script>
--->
 <!-- End Block -->
-
-
