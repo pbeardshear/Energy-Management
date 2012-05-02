@@ -78,7 +78,7 @@
   #content { padding: 25px; }
   .content-page { margin: 0 auto; }
 
-  #graphContainer { width: 315px; overflow: hidden; }
+  #graphContainer { overflow: hidden; }
   #intervalControls { width: 315px; }
   #intervalControls ul { margin: 5px auto; width: 266px; }
 </style>
@@ -93,18 +93,41 @@
     chart = new Highcharts.Chart({
       chart: {
         renderTo: 'graphContainer',   // The element to render the chart into
-        type: 'line'    // Type of graph to draw  
+        type: 'area',
+        zoomType: 'x'
       },
       title: {
-        text: '<%= @hall.name %>'   // TODO: Replace with hall name
+        text: '<%= @hall.name %>'
       },
       xAxis: {
         type: 'datetime'    // Tells highcharts to interpolate the data using the date
       },
       yAxis: {
-        text: 'Electricity'
+        title: {
+          text: 'Electricity (kW)'
+        }
       },
-      series: (<%=raw @data %>)[0].Readings    // Array of data points to render
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        area: {
+          marker: {
+            enabled: false
+          },
+          fillColor: {
+            linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+            stops: [
+              [0, Highcharts.getOptions().colors[0]],
+              [1, 'rgba(2, 0, 0, 0)']
+            ]
+          },
+          lineWidth: 1
+        }
+      },
+      series: [{ 
+        name: 'kW',
+        data: (<%=raw @data %>)[0].Readings }]    // Array of data points to render
                     // Because we are using datetime, each point should be an array of the form:
                     // [timestamp, yValue], where timestamp is in UTC format
     });
