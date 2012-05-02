@@ -53,8 +53,10 @@ And /I search for "(.*)" hall/ do |hall|
 Given /^I (un)?pin "(.*)"$/ do |unpin, hall|
   if (unpin and page.has_css?('li.li-pinned', :text => hall)) or (!unpin and page.has_no_css?('li.li-pinned', :text => hall))
     step %Q{I follow "Pin"}
+    step %Q{I follow "Ok"}
+    wait_until { page.find_link("#{hall}").visible? } 
     step %Q{I follow "#{hall}"}
-    step %Q{I follow "Pin"}
+    step %Q{I follow "End"}
   end
 end
 
@@ -67,7 +69,7 @@ Then /^I should see "(.*)" hall pinned$/ do |hall|
   # checking if the hall has the correct class does not really test anything
   # that the user sees
   good = false
-  page.all("img[src='/assets/pin-in.png'] + .hall-name").each do |element|
+  page.all("img[src='/assets/pin.png'] + .hall-name", :visible=>true).each do |element|
     if element.has_content? hall
       good = true
       break
