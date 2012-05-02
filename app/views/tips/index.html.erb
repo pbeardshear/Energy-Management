@@ -14,7 +14,7 @@
 	    <li>
 			<h3><%=subcat%></h3>	
 			<% tips.each do |tip| %>
-				<p><%=tip.content%></p>
+				<p><%=raw tip.content%></p>
 			<% end %>
 		</li>
 	  <% end %>
