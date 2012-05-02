@@ -24,32 +24,21 @@ class Hall < ActiveRecord::Base
   end
 
   def get_data interval
-    # This will become deprecated, once we move the
-    # ajax call to client side    
-    
-    params = { 
-      :starttime => Time.now.to_ms,
-      :endtime => getendtime(interval),
-      :limit => 1000,
-      :streamlimit => 100 }
-    
-    url = get_data_url params
-    uri = URI(url)
-    uri.query = URI.encode_www_form(params)
-    res = Net::HTTP.get(uri)
+    starttime = getendtime(interval)
+    endtime = Time.now.to_ms
 
+    uri = URI.parse("http://new.openbms.org/backend/api/query")
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Post.new(uri.request_uri)
+    request.body = Hall.getquery(starttime, endtime, self.name)
+
+    resp = http.request(request)
+    resp.body
   end
 
-  def get_data_url params
-    base = "http://new.openbms.org/backend/api/prev"
-    name = self.name.gsub(' ', '%20')
-    ret = "#{base}/Metadata__Location__Building/#{name}/Properties__UnitofMeasure/kW?"
-    
-    things = params.map { |key, value| 
-      "#{key}=#{value}"  
-    }
-    
-    ret += things.join("&")
+  def self.getquery(starttime, endtime, hallname)
+    streamlimit = 1000
+    "select data in (#{starttime}, #{endtime}) streamlimit #{streamlimit} where Metadata/Extra/System = 'electric'  and ((Properties/UnitofMeasure = 'kW' or Properties/UnitofMeasure = 'Watts') or Properties/UnitofMeasure = 'W') and Metadata/Location/Building = '#{hallname}' and not Metadata/Extra/Operator like 'sum%'"
   end
 
   def getendtime interval
@@ -62,7 +51,4 @@ class Hall < ActiveRecord::Base
     end
   end
 
-  def self.getquery starttime endtime hall
-    "apply nansum(axis=1) < paste < window(first, field='minute', increment=15) < units to  data in (#{starttime}, #{endtime}) streamlimit 10000 where Metadata/Extra/System = 'electric'  and ((Properties/UnitofMeasure = 'kW' or Properties/UnitofMeasure = 'Watts') or Properties/UnitofMeasure = 'W') and Metadata/Location/Building like '#{hall}%' and not Metadata/Extra/Operator like 'sum%' and not Path like '%demand'";
-  end
 end

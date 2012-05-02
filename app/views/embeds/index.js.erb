@@ -9,15 +9,8 @@
 
     // use this temporarily
     var data = <%=raw @data %>;
-
-    // change unix timestamp to date objects,
-    // only for human readilibty, possibly be userful in the future
-    (function toDate(data){
-	for(i in data){
-	    for(j in data[i].Readings){
-		data[i].Readings[j].push(new Date(data[i].Readings[j][0]));
-	    };
-	};
-    })(data);
-
+    
+    // they give us 4 arrays, some of them are fake.. usually the first one is real
+    real_data = data[0];
+    console.log(real_data);
 })( <%= @width %>, <%= @height %>, "<%= @interval %>" );
