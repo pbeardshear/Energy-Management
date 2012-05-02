@@ -16,7 +16,7 @@
     </div>
     
     <div id="graphContainer">
-      <script id="pulseGraph" src="<%= @path %>"></script>
+      <!--script id="pulseGraph" src="<%= @path %>"></script-->
     </div>
     
     <!-- Begin footer -->
@@ -84,8 +84,8 @@
 </style>
 
 <!-- Uncomment this block when we start using highcharts -->
-<!--
-<script type="text/javascript" src="highcharts.js"></script>
+
+<script type="text/javascript" src="/assets/highcharts.js"></script>
 <script type="text/javascript">
   // Create the graph
   var chart;
@@ -104,13 +104,10 @@
       yAxis: {
         text: 'Electricity'
       },
-      series: []    // Array of data points to render
+      series: (<%=raw @data %>)[0].Readings    // Array of data points to render
                     // Because we are using datetime, each point should be an array of the form:
                     // [timestamp, yValue], where timestamp is in UTC format
     });
   });
 </script>
--->
 <!-- End Block -->
-
-

@@ -18,8 +18,8 @@ class Hall < ActiveRecord::Base
     else
       # hard-coded, need to find a way to dynamically know this 
       # application's url, so it works no matter where we host it.
-      host = "localhost:3000"
-      "http://#{host}/embeds/?hall_id=#{self.id}&width=#{width}&height=#{height}&interval=#{interval}"
+      # host = "localhost:3000"
+      # "http://#{host}/embeds/?hall_id=#{self.id}&width=#{width}&height=#{height}&interval=#{interval}"
     end
   end
 
