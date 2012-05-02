@@ -16,7 +16,7 @@
     </div>
     
     <div id="graphContainer">
-      <!--script id="pulseGraph" src="<%= @path %>"></script-->
+      <script id="pulseGraph" src="<%= @path %>"></script>
     </div>
     
     <!-- Begin footer -->
@@ -92,11 +92,11 @@
   $(document).ready(function () {
     chart = new Highcharts.Chart({
       chart: {
-        renderTo: '#graphContainer',   // The element to render the chart into
+        renderTo: 'graphContainer',   // The element to render the chart into
         type: 'line'    // Type of graph to draw  
       },
       title: {
-        text: 'Hall Name Here'   // TODO: Replace with hall name
+        text: '<%= @hall.name %>'   // TODO: Replace with hall name
       },
       xAxis: {
         type: 'datetime'    // Tells highcharts to interpolate the data using the date
