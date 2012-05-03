@@ -13,6 +13,13 @@ Background:
 	And I am on "/halls"
 
 @javascript
+Scenario: Unpinning should bring building back to correct spot
+	  Given I pin "Krober"
+	  Given I unpin "Krober"
+	  Then I should see "Cory" before "Krober"
+	  And I should see "Krober" before "Soda"
+
+@javascript
 Scenario: Buildings are in alphabetical order to start with, but pinned buildings will be shown first
 	  Then I should see "Cory" before "Krober"
 	  Then I should see "Krober" before "Soda"
@@ -35,5 +42,4 @@ Scenario: Unpinning should make items not be pinned anymore
  	  Given I unpin "Cory"
  	  Then I should see "Soda" hall pinned
  	  Then I should not see "Cory" hall pinned
-
 

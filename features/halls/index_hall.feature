@@ -14,5 +14,7 @@ Background:
 Scenario: Going to the show page and back
 	  When I follow "Shofix"
 	  Then I should be on "/halls/1"
-	  When I follow "Back" within "#graphContent"
+
+	  When I follow "Day"
+	  And I follow "Back" within "#graphContent"
 	  Then I should be on "/halls"
