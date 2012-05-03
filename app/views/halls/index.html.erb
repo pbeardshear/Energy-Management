@@ -5,7 +5,7 @@
 <div data-role="header" data-position="fixed" data-theme="b">
   <a href="/halls" data-role="button" data-rel="back" data-theme="a">Back</a>
   <h1>Buildings</h1>
-  <a href="/overlay/pinOverlay.html" id="pinBuildings" class="ui-btn-right" data-rel="dialog" data-transition="pop">&nbsp;Pin&nbsp;</a>
+  <a href="/overlay/pinOverlay.html" id="pinBuildings" class="ui-btn-right" data-rel="dialog" data-transition="fade">&nbsp;Pin&nbsp;</a>
 </div>
 
 <div data-role="content">
@@ -70,7 +70,6 @@
         pinning = !pinning;
         // Toggle the pin button text between pin and end
         $('#pinBuildings .ui-btn-text').text(pinning ? 'End' : 'Pin');
-        
         if (!pinning || localStorage.getItem('hidePinPopup')) {
           // This will prevent the dialog from popping up
           return false;
