@@ -134,6 +134,7 @@ Morgan.green_features = [strategic, climate, green_buildings, power]
 # Hall.create(:name=>"Moses")
 Mulford = Hall.create(:name=>"Mulford Hall")
 Mulford.green_features = [green_departments, climate, power]
+
 # Hall.create(:name=>"Music Library")
 # Hall.create(:name=>"Naval Arch")
 # Hall.create(:name=>"North Gate")
