@@ -121,7 +121,8 @@
           }
           // Change the image icon to the pinned one
           togglePinned(li);
-          console.log(pinnedItems);
+          localStorage.removeItem('pinned');
+          localStorage.setItem('pinned', JSON.stringify(pinnedItems));
           return false;
         }
         else {
@@ -129,11 +130,6 @@
           return true;
         }
       });
-      
-      window.onbeforeunload = function () {
-	  localStorage.removeItem('pinned');
-        localStorage.setItem('pinned', JSON.stringify(pinnedItems));
-      };
       
       initialized = true;
     }
