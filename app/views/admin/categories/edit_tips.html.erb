@@ -1,0 +1,10 @@
+<%= form_tag update_tips_admin_category_path(@category), :method => 'put' do %>
+  <%= label_tag :tips, 'Tips'%>
+  <% @all_tips.each do |tip| %>
+    <label class="checkbox">
+      <%= check_box_tag "tips[#{tip.id}]", 1, @category.tips.include?(tip)%>
+      <%= tip.title %>
+    </label>
+  <% end %>
+  <%= submit_tag 'Update tips for this category', :class => 'btn btn-success' %>
+<% end %>

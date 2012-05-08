@@ -1,0 +1,23 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <div data-role="dialog">
+      <div data-role="header" data-theme="b"><h1>Pinning Buildings</h1></div>
+      <div data-role="content" data-theme="b">
+        <h4>
+          Tap a building in the list to pin it.<br />
+          Tapping an already pinned building will unpin it.
+        </h4>
+        <p>Pinned buildings appear at the top for easy access.</p>
+        <a href="#" data-role="button" data-rel="back">Ok</a>
+        <a href="#" data-role="button" data-rel="back" data-theme="c" id="dontShow">Don't Show This Again</a>
+      </div>
+      <script type="text/javascript">
+        $('#dontShow').bind('click',  function () {
+          localStorage.setItem('hidePinPopup', 'true');
+        });
+      </script>
+    </div>
+  </body>
+</html>

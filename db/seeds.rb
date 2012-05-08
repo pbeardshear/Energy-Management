@@ -1,19 +1,239 @@
 # -*- coding: utf-8 -*-
+  
+  # Create green features
+power =  GreenFeature.create(:id =>1, :name => "power-agents", :full_name => "Power Agents", :content => "A Power Agent is a UC Berkeley campus volunteer committed to helping colleagues reduce energy usage in campus buildings. Power Agents work within their units to encourage behavior change, decrease energy usage, and identify potential energy-saving projects.  Power Agents receive training, resources, and a toolkit to better assist energy reduction on campus.   For more information visit: http://mypower.berkeley.edu/about/power_agents.html")
+
+green_buildings =  GreenFeature.create(:id => 2, :name => "green-buildings", :full_name => "Green Buildings", :content => "Campus construction projects generally follow the U.S. Green Building Council Leadership in Energy and Environmental Design (LEED™) system for green building.  Major projects are LEED™-certified to a minimum of LEED™ Silver.  In 2012, the campus has seven LEED™ certified projects, representing 5.1% of total campus square footage.  All major projects now being designed, as well as several projects now in construction, are expected to be LEED™ certified.  New building and major renovation projects also outperform state energy code requirements by at least 20%.")
+
+strategic =  GreenFeature.create(:id => 3, :name => "strategic-energy", :full_name => "Strategic Energy Plan", :content => "Since 2006, the campus has implemented over a hundred projects as part of its Strategic Energy Plan to reduce energy usage in new and large existing campus buildings.  As part of a partnership with Pacific Gas & Electric, these projects have now saved almost 14 million kWh and close to 460,000 therms of natural gas annually.  The Strategic Energy Plan is expected to reduce emissions by 17,500 tons.")
+
+climate =  GreenFeature.create(:id => 4, :name => "cal-climate", :full_name => "Cal Climate Action Partnership", :content => "UC Berkeley's climate action goal is to reduce its greenhouse gas (GHG) emissions to 1990 levels by 2014.  The Cal Climate Action Partnership (CalCAP) is a collaboration of faculty, administration, staff, and students working to achieve this goal.  CalCAP's work includes conducting an annual ten-source GHG emissions inventory to track and report our progress and implementing climate change mitigation strategies.  UCB  is making progress toward reaching the target:  2010 GHG emissions were almost 5% below 2008 levels and electricity use in 2010 was down 1.1% on the main campus and 1.5% overall relative to 2009.  The campus will eventually achieve climate neutrality.")
+
+green_departments = GreenFeature.create(:id => 5,
+                                        :name => "green-deparements",
+                                        :full_name => "Green Departments",
+                                        :content => "UC Berkeley Green Department certification recognizes campus  departments that have taken extra steps to be more sustainable. The  program identifies a set of conditions and actions - including energy, waste, transportation, and purchasing - that can be followed in order to be certified. The certification  process is designed to provide resources, guidance, and recognition to faculty,  staff, and students as they take steps to decrease their environmental impacts  at work.")
+
+
+# Hall.create(:name=>"Campbell Hall")
+# Hall.create(:name=>"Central Dine")
+# Hall.create(:name=>"Chan-Bowditch")
+Chavez_Center = Hall.create(:name=>"Chavez Center")
+Chavez_Center.green_features = [power, climate]
+
+Cory_Hall = Hall.create(:name=>"Cory Hall")
+Cory_Hall.green_features = [power, strategic, climate]
+
+# Hall.create(:name=>"Davis Hall")
+# Hall.create(:name=>"Doe Addition")
+Hall.create(:name=>"Doe Annex")
+
+Doe = Hall.create(:name=>"Doe Library")
+Doe.green_features = [climate, power]
+
+Donner = Hall.create(:name=>"Donner Laboratory")
+Donner.green_features = [power, climate]
+
+# Hall.create(:name=>"Durant")
+# Hall.create(:name=>"Dwinelle Annx")
+Dwinelle = Hall.create(:name=>"Dwinelle Hall")
+Dwinelle.green_features = [power, strategic, climate]
+
+East = Hall.create(:name=>"East Asian Library")
+East.green_features = [power, climate]
+
+# Hall.create(:name=>"Edwards Track")
+# Hall.create(:name=>"Eshleman Hall")
+Etch = Hall.create(:name=>"Etcheverry Hall")
+Etch.green_features = [power, climate]
+
+# Hall.create(:name=>"Evans Field")
+Evans = Hall.create(:name=>"Evans Hall")
+Evans.green_features = [strategic, power, climate]
+
+# Hall.create(:name=>"Foothill Dorms")
+Gardner = Hall.create(:name=>"Gardner Stacks")
+Gardner.green_features = [climate, power]
+
+# Hall.create(:name=>"Giannini")
+# Hall.create(:name=>"Giannini Hall")
+# Hall.create(:name=>"Giauque")
+# Hall.create(:name=>"Gill Tract")
+# Hall.create(:name=>"Gilman")
+# Hall.create(:name=>"Golden Bear")
+# Hall.create(:name=>"Golden Bear Sb")
+# Hall.create(:name=>"Greek Theatre")
+# Hall.create(:name=>"Haas Business")
+# Hall.create(:name=>"Haas Clbhouse")
+Haas = Hall.create(:name=>"Haas Pavilion")
+Haas.green_features = [climate, strategic]
+
+Haas = Hall.create(:name=>"Haas School of Business")
+Haas.green_features = [climate, strategic, power]
+
+# Hall.create(:name=>"Haas Trailers")
+Hargrove = Hall.create(:name=>"Hargrove Library")
+Hargrove.green_features = [power, climate]
+
+# Hall.create(:name=>"Harmon Gym")
+# Hall.create(:name=>"Haviland")
+# Hall.create(:name=>"Haviland Hall")
+# Hall.create(:name=>"Hearst Annex")
+Hearst = Hall.create(:name=>"Hearst Gym")
+Hearst.green_features = [climate, power]
+
+Mining = Hall.create(:name=>"Hearst Mining Building")
+Mining.green_features = [power, climate]
+
+# Hall.create(:name=>"Heating Plant")
+# Hall.create(:name=>"Hertz Hall")
+# Hall.create(:name=>"Hesse")
+# Hall.create(:name=>"Hesse Annex")
+Hilde = Hall.create(:name=>"Hildebrand Hall")
+Hilde.green_features = [climate, strategic, power]
+
+Hilgrad = Hall.create(:name=>"Hilgard Hall")
+Hilgrad.green_features = [climate, strategic, power]
+
+#Hall.create(:name=>"King Union Bldg")
+# Hall.create(:name=>"Kleeburger")
+#Hall.create(:name=>"Koshland")
+Krober = Hall.create(:name=>"Kroeber Hall")
+Krober.green_features = [climate, power]
+
+Latimer = Hall.create(:name=>"Latimer Hall")
+Latimer.green_features = [power, climate, strategic]
+
+# Hall.create(:name=>"LAW")
+Hall.create(:name=>"Law and Simon Hall")
+Hall.create(:name=>"Lawrence Hall of Science")
+# Hall.create(:name=>"LBL")
+# Hall.create(:name=>"Leconte Hall")
+LeCunt = Hall.create(:name=>"Le Conte Hall")
+LeCunt.green_features = [strategic, climate, power]
+
+#Hall.create(:name=>"Lewis")
+#Hall.create(:name=>"Life Science")
+LSA = Hall.create(:name=>"LSA")
+LSA.green_features = [power, climate, strategic]
+
+# Hall.create(:name=>"LSB")
+McCone = Hall.create(:name=>"McCone")
+McCone.green_features = [strategic, power, climate]
+
+# Hall.create(:name=>"Memorial Std")
+# Hall.create(:name=>"Mens Fac Club")
+Minor = Hall.create(:name=>"Minor Addition")
+Minor.green_features = [strategic, climate, power]
+
+# Hall.create(:name=>"Moffitt")
+Morgan = Hall.create(:name=>"Morgan Hall")
+Morgan.green_features = [strategic, climate, green_buildings, power]
+
+# Hall.create(:name=>"Morrison")
+# Hall.create(:name=>"Moses")
+Mulford = Hall.create(:name=>"Mulford Hall")
+Mulford.green_features = [green_departments, climate, power]
+
+# Hall.create(:name=>"Music Library")
+# Hall.create(:name=>"Naval Arch")
+# Hall.create(:name=>"North Gate")
+# Hall.create(:name=>"Northwest Animal Facility")
+# Hall.create(:name=>"Nw Animal")
+# Hall.create(:name=>"Obrien")
+Ox = Hall.create(:name=>"Oxford Tract")
+Ox.green_features = [power, climate]
+
+# Hall.create(:name=>"Parking A")
+# Hall.create(:name=>"Parking B")
+# Hall.create(:name=>"Parking B Sub")
+# Hall.create(:name=>"Parking D")
+# Hall.create(:name=>"Parking H")
+# Hall.create(:name=>"Parking Stdm")
+RSF = Hall.create(:name=>"Rec Sports Facility")
+RSF.green_features = [power, climate, strategic]
+
+#Hall.create(:name=>"Rec Sport Sub")
+#Hall.create(:name=>"Res Hall I")
+#Hall.create(:name=>"Res Hall Ii")
+#Hall.create(:name=>"Res Hall Iii")
+#Hall.create(:name=>"Res Hall Ii S")
+#Hall.create(:name=>"Res Hall I Sb")
+#Hall.create(:name=>"Rh3 Ida")
+#Hall.create(:name=>"Rh3 Norton")
+#Hall.create(:name=>"Rh3 Priestley")
+#Hall.create(:name=>"Rh3 Spence")
+#Hall.create(:name=>"Rugby Fld Hse")
+#Hall.create(:name=>"Services")
+#Hall.create(:name=>"Simon")
+Soda = Hall.create(:name=>"Soda Hall")
+Soda.green_features = [power, climate, strategic]
+
+#Hall.create(:name=>"South")
+#Hall.create(:name=>"Sproul")
+#Hall.create(:name=>"Stanley")
+#Hall.create(:name=>"Std Press Box")
+St = Hall.create(:name=>"Stephens Hall")
+St.green_features = [power, climate]
+
+#Hall.create(:name=>"Stern")
+#Hall.create(:name=>"Sutardja Dai Hall")
+#Hall.create(:name=>"Tang Center")
+Tan = Hall.create(:name=>"Tan Hall")
+Tan.green_features = [climate, power]
+
+Tol = Hall.create(:name=>"Tolman Hall")
+Tol.green_features = [climate, power]
+
+#Hall.create(:name=>"Tolman Sub")
+#Hall.create(:name=>"Union")
+#Hall.create(:name=>"Univ Art Ctr")
+Univer = Hall.create(:name=>"University Hall")
+Univer.green_features = [climate, strategic]
+
+#Hall.create(:name=>"University Sb")
+VL = Hall.create(:name=>"Valley Life Sciences")
+VL.green_features = [strategic, power, climate]
+
+#Hall.create(:name=>"Warren Hall/Oxford Tract")
+#Hall.create(:name=>"Wellman Ctyd")
+#Hall.create(:name=>"Wellman Hall")
+Wheel = Hall.create(:name=>"Wheeler Hall")
+Wheel.green_features = [power, climate, strategic]
+
+#Hall.create(:name=>"Women Fac Clb")
+Wurst = Hall.create(:name=>"Wurster Hall")
+Wurst.green_features = [green_buildings, strategic, power, climate]
+#Hall.create(:name=>"Zellerbach Hall")
+
+
+
 if Hall.where(:id => 1).empty?
   Hall.create(:id => 1,:name => "Shofix Hall", :key =>"Bd5238Ki31GOL5ZewrQglA%3D%3D").save()
-  GreenFeature.create(:id =>1, :name => "Flourescent Light Bulbs", :content => "This hall has low-wattage light bulbs.")
+
+
+  # End green features
+  
   HallFeature.create(:hall_id => 1, :green_feature_id => 1)
+  HallFeature.create(:hall_id => 1, :green_feature_id => 2)
+  HallFeature.create(:hall_id => 1, :green_feature_id => 3)
+  HallFeature.create(:hall_id => 1, :green_feature_id => 4)
 end
 
 if Hall.where(:id => 2).empty?
   Hall.create(:id => 2, :name => "Frungy Centre", :key => "6MwduHG8B4JkuCejC0sCeg%3D%3D").save
   HallFeature.create(:hall_id => 2, :green_feature_id => 1)
+  HallFeature.create(:hall_id => 2, :green_feature_id => 4)
 end
 
 
 if Hall.where(:id => 3).empty?
   Hall.create(:id => 3, :name => "Pik Tower", :key => "xE2OB0othPxoMOeq8gGehQ%3D%3D").save
-  HallFeature.create(:hall_id => 3, :green_feature_id => 1)
+  HallFeature.create(:hall_id => 3, :green_feature_id => 2)
+end
+
+if Hall.where(:id => 4).empty?
+  Hall.create(:id => 4, :name => "Soda Hall").save
 end
 
 Category_general = Category.find_by_name("General")
