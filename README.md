@@ -13,4 +13,5 @@ rendered as a graph using the HighCharts JavaScript library.
 Credits
 -------
 Created by as a final class project for CS 169.
+
 Thanks to our customer Erin Fenley for leading us through this project.
